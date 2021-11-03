@@ -23,7 +23,7 @@ namespace webdev_semester_1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Login()
         {
             return View();
         }

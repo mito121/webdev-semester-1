@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-bg">
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="d-block">
+                <div class="logo">
+                    <img src="https://www.alex-andersen.dk/cdn/assets/aalogo-square.db4301db.png" alt="Logo" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <form class="mt-5">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Indtast email">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Adgangskode</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Indtast adgangskode">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success px-3">Log ind</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
