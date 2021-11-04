@@ -78,8 +78,38 @@ body {
     display: block;
 }
 
+.login-bg-wrapper {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
 .login-bg {
-    min-height: 100vh;
+    position: absolute;
+    top: -2.5vw;
+    left: -2.5vw;
+    z-index: -1;
+    min-height: 105vh;
+    width: 105vw;
     background-image: url(../img/login-bg.png);
+    filter: blur(4px);
     background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.login-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vertical-spacing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70vh;
+}
+
+.signup {
+
 }
