@@ -60,14 +60,32 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*margin-bottom: 60px;*/
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+
+
+
+/* Top navigation */
+.top-nav {
+    padding: 6px 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-nav-logo img{
+    width: 65px;
+}
+
+.top-nav-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.top-nav-menu li {
+    padding: 4px 6px;
 }
 
 
@@ -112,4 +130,56 @@ body {
 
 .signup {
 
+}
+
+/* HOME */
+
+.flex-height {
+    height: calc(100vh - 125px );
+}
+
+ul.home-nav {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 225px;
+}
+
+ul.home-nav li {
+    text-align: center;
+    margin: 26px 0;
+}
+
+ul.home-nav li a {
+    background-color: #EAEAEA;
+    color: #000;
+    display: block;
+    padding: 9px 0;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.newsfeed {
+    background-color: #00904A;
+    color:#fff;
+    padding:45px 15px;
+}
+.socials {
+    background-color: #00904A;
+    height: 68px;
+}
+
+.socials a {
+    font-size:1.8rem;
+    color: #FFF;
+}
+
+.footer-logo {
+    background-color: #fff;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    object-fit: contain;
 }
