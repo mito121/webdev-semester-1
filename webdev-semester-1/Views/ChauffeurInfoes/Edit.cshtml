@@ -1,0 +1,79 @@
+﻿@model webdev_semester_1.Models.ChauffeurInfo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ChauffeurInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ChauffeurInfoId" />
+            <div class="form-group">
+                <label asp-for="RouteType" class="control-label"></label>
+                <input asp-for="RouteType" class="form-control" />
+                <span asp-validation-for="RouteType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicenseNo" class="control-label"></label>
+                <input asp-for="DriverLicenseNo" class="form-control" />
+                <span asp-validation-for="DriverLicenseNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicenseExperationDate" class="control-label"></label>
+                <input asp-for="DriverLicenseExperationDate" class="form-control" />
+                <span asp-validation-for="DriverLicenseExperationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicenseImage" class="control-label"></label>
+                <input asp-for="DriverLicenseImage" class="form-control" />
+                <span asp-validation-for="DriverLicenseImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TruckLicense" class="control-label"></label>
+                <input asp-for="TruckLicense" class="form-control" />
+                <span asp-validation-for="TruckLicense" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TruckLicenseExperationDate" class="control-label"></label>
+                <input asp-for="TruckLicenseExperationDate" class="form-control" />
+                <span asp-validation-for="TruckLicenseExperationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TruckLicenseImage" class="control-label"></label>
+                <input asp-for="TruckLicenseImage" class="form-control" />
+                <span asp-validation-for="TruckLicenseImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EuQualification" class="control-label"></label>
+                <input asp-for="EuQualification" class="form-control" />
+                <span asp-validation-for="EuQualification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EuQualificationExperationDate" class="control-label"></label>
+                <input asp-for="EuQualificationExperationDate" class="form-control" />
+                <span asp-validation-for="EuQualificationExperationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label"></label>
+                <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId"></select>
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
