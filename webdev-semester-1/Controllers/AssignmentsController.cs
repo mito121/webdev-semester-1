@@ -25,6 +25,24 @@ namespace webdev_semester_1.Controllers
             return View(await alexAndersenDBContext.ToListAsync());
         }
 
+
+
+
+        // GET: Assignments/MyAssignments **
+
+        public async Task<IActionResult> MyAssignments(int? userID = 2)
+        {
+            var alexAndersenDBContext = _context.Assignments
+                .Include(a => a.Chauffeur)
+                .Include(a => a.ContactUser)
+                .Include(a => a.ReplacementUser)
+                .Include(a => a.StartCity)
+                .Include(a => a.Status);
+            return View(await alexAndersenDBContext.ToListAsync());
+        }
+
+
+
         // GET: Assignments/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -1,73 +1,46 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿* {
+    box-sizing: border-box;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+ul, ol {
+    margin: 0;
+    padding: 0;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+main {
+    padding-top:85px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Top navigation */
+.top-nav {
+    padding: 6px 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFF;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    position: fixed;
+    z-index: 99;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.top-nav-logo img{
+    width: 65px;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.top-nav-menu ul {
+    list-style: none;
+    display: flex;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.top-nav-menu li a {
+    padding: 0 6px;
+    color: #000;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+.top-nav-menu li a i {
+    font-size: 1.5rem;
+    margin: 5px 0 0 5px;
 }
 
 
@@ -112,4 +85,103 @@ body {
 
 .signup {
 
+}
+
+/* HOME */
+
+.h-full {
+    /*padding-top: 60px;*/
+    min-height: calc(100vh - 146px );
+}
+
+ul.home-nav {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 225px;
+}
+
+ul.home-nav li {
+    text-align: center;
+    margin: 26px 0;
+}
+
+ul.home-nav li a {
+    background-color: #EAEAEA;
+    color: #000;
+    display: block;
+    padding: 9px 0;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.newsfeed {
+    background-color: #00904A;
+    color:#fff;
+    padding:45px 15px;
+}
+
+
+
+/* My trips */
+
+.pageback {
+    color: #000;
+    font-size:1.5rem;
+}
+
+.trip-card {
+    margin: 18px auto;
+    padding: 4px 12px;
+    background: #eaeaea;
+    width: 80%;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-left-color: green;
+    box-shadow: 0px 0px 3px 0px #888888;
+}
+
+.trip-card h1 {
+    font-size: 1.4rem;
+}
+
+.trip-card > h1 {
+    text-transform: capitalize;
+}
+
+
+.trip-card p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+}
+
+.trip-card p:last-of-type {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+
+
+/* FOOTER */
+.socials {
+    background-color: #00904A;
+    height: 60px;
+}
+
+.socials a {
+    font-size:1.8rem;
+    color: #FFF;
+}
+
+.footer-logo {
+    background-color: #fff;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    object-fit: contain;
 }
