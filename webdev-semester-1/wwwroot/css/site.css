@@ -56,6 +56,17 @@ main {
     font-weight: 600;
 }
 
+.btn-help {
+    background-color: #005140;
+    color: #fff;
+}
+
+.signin {
+    background-color: #00904A;
+    border-color: #00904A;
+    color: #fff;
+}
+
 .logo img {
     width: 100px;
     margin: 50px auto 0 auto;
