@@ -7,7 +7,7 @@
     <div class="login-bg">
     </div>
 
-    <div class="row mb-5" style="z-index: 10;">
+    <div class="row mb-1" style="z-index: 10;">
         <div class="col-12">
             <div class="d-block">
                 <div class="logo">
@@ -17,22 +17,26 @@
         </div>
     </div>
 
-    <div class="vertical-spacing mt-5">
+    <div class="vertical-spacing mt-2">
         <div class="row">
             <div class="col-9 mx-auto">
                 <form class="mt-5">
                     <div class="form-group">
-                        <label for="loginEmail" class="font-weight-bold">Email</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Indtast email">
+                        <label for="username" class="font-weight-bold">Brugernavn</label>
+                        <input type="text" class="form-control box-shadow" id="username" placeholder="Indtast brugernavn">
                     </div>
 
                     <div class="form-group">
-                        <label for="loginPassword" class="font-weight-bold">Adgangskode</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Indtast adgangskode">
+                        <label for="password" class="font-weight-bold">Adgangskode</label>
+                        <input type="password" class="form-control box-shadow" id="password" placeholder="Indtast adgangskode">
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success px-3">Log ind</button>
+                        <button type="submit" class="btn signin w-100 mt-3">Log ind</button>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Ikke registreret? <a href="#" class="sign-up-link">Anmod om bruger</a></span>
                     </div>
                 </form>
             </div>
@@ -41,8 +45,7 @@
         <div class="row">
             <div class="col-9 mx-auto">
                 <div class="login-footer">
-                    <a href="#" class="btn btn-info">Ny bruger</a>
-                    <a href="#" class="btn btn-secondary px-4">Hjælp</a>
+                    <a href="#" class="w-100 btn btn-help">Hjælp</a>
                 </div>
             </div>
         </div>

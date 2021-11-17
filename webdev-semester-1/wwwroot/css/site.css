@@ -45,9 +45,31 @@ main {
 
 
 /* Login page */
+.box-shadow {
+    /*box-shadow: 0px 1px 5px 0px;*/
+    box-shadow: 0px 0px 10px -3px;
+}
+
+.sign-up-link {
+    color: #28a745;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.btn-help {
+    background-color: #005140;
+    color: #fff;
+}
+
+.signin {
+    background-color: #00904A;
+    border-color: #00904A;
+    color: #fff;
+}
+
 .logo img {
     width: 100px;
-    margin: 15px auto 0 auto;
+    margin: 50px auto 0 auto;
     display: block;
 }
 
@@ -66,7 +88,8 @@ main {
     min-height: 105vh;
     width: 105vw;
     background-image: url(../img/login-bg.png);
-    filter: blur(4px);
+    /*filter: blur(4px);*/
+    opacity: .175;
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -80,7 +103,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 70vh;
+    height: 75.5vh;
 }
 
 .signup {
