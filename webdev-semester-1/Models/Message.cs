@@ -9,6 +9,7 @@ namespace webdev_semester_1.Models
     {
         public int MessageId { get; set; }
         public string MessageText { get; set; }
+        public bool? Read { get; set; }
         public int ReceiverUserId { get; set; }
         public int SenderUserId { get; set; }
 

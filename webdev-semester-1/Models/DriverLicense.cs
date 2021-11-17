@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace webdev_semester_1.Models
 {
-    public partial class ChauffeurLicense
+    public partial class DriverLicense
     {
-        public int ChauffeurId { get; set; }
+        public int DriverId { get; set; }
         public int TypeId { get; set; }
 
-        public virtual User Chauffeur { get; set; }
+        public virtual User Driver { get; set; }
         public virtual LicenseType Type { get; set; }
     }
 }

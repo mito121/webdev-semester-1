@@ -19,16 +19,18 @@ namespace webdev_semester_1.Models
 
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Assignment> Assignments { get; set; }
-        public virtual DbSet<ChauffeurInfo> ChauffeurInfos { get; set; }
-        public virtual DbSet<ChauffeurLicense> ChauffeurLicenses { get; set; }
+        public virtual DbSet<Availability> Availabilities { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<DriverInfo> DriverInfos { get; set; }
+        public virtual DbSet<DriverLicense> DriverLicenses { get; set; }
         public virtual DbSet<LicenseType> LicenseTypes { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserAvailability> UserAvailabilities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -68,8 +70,6 @@ namespace webdev_semester_1.Models
 
                 entity.Property(e => e.AssignmentId).HasColumnName("AssignmentID");
 
-                entity.Property(e => e.ChauffeurId).HasColumnName("ChauffeurID");
-
                 entity.Property(e => e.ContactUserId).HasColumnName("ContactUserID");
 
                 entity.Property(e => e.CountryCodeEnd)
@@ -84,87 +84,55 @@ namespace webdev_semester_1.Models
                     .IsRequired()
                     .HasMaxLength(200);
 
+                entity.Property(e => e.DriverUserId).HasColumnName("DriverUserID");
+
                 entity.Property(e => e.ReplacementUserId).HasColumnName("ReplacementUserID");
 
                 entity.Property(e => e.StartCityId).HasColumnName("StartCityID");
 
                 entity.Property(e => e.StatusId).HasColumnName("StatusID");
 
-                entity.HasOne(d => d.Chauffeur)
-                    .WithMany(p => p.AssignmentChauffeurs)
-                    .HasForeignKey(d => d.ChauffeurId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Assignmen__Chauf__440B1D61");
-
                 entity.HasOne(d => d.ContactUser)
                     .WithMany(p => p.AssignmentContactUsers)
                     .HasForeignKey(d => d.ContactUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Assignmen__Conta__4222D4EF");
+                    .HasConstraintName("FK__Assignmen__Conta__4AB81AF0");
+
+                entity.HasOne(d => d.DriverUser)
+                    .WithMany(p => p.AssignmentDriverUsers)
+                    .HasForeignKey(d => d.DriverUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Assignmen__Drive__4CA06362");
 
                 entity.HasOne(d => d.ReplacementUser)
                     .WithMany(p => p.AssignmentReplacementUsers)
                     .HasForeignKey(d => d.ReplacementUserId)
-                    .HasConstraintName("FK__Assignmen__Repla__4316F928");
+                    .HasConstraintName("FK__Assignmen__Repla__4BAC3F29");
 
                 entity.HasOne(d => d.StartCity)
                     .WithMany(p => p.Assignments)
                     .HasForeignKey(d => d.StartCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Assignmen__Start__412EB0B6");
+                    .HasConstraintName("FK__Assignmen__Start__49C3F6B7");
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.Assignments)
                     .HasForeignKey(d => d.StatusId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Assignmen__Statu__403A8C7D");
+                    .HasConstraintName("FK__Assignmen__Statu__48CFD27E");
             });
 
-            modelBuilder.Entity<ChauffeurInfo>(entity =>
+            modelBuilder.Entity<Availability>(entity =>
             {
-                entity.ToTable("ChauffeurInfo");
+                entity.ToTable("Availability");
 
-                entity.Property(e => e.ChauffeurInfoId).HasColumnName("ChauffeurInfoID");
+                entity.Property(e => e.AvailabilityId).HasColumnName("AvailabilityID");
 
-                entity.Property(e => e.DriverLicenseImage)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.Date).HasColumnType("date");
 
-                entity.Property(e => e.RouteType).HasMaxLength(100);
+                entity.Property(e => e.EndTime).HasDefaultValueSql("('16:00:00.00')");
 
-                entity.Property(e => e.TruckLicenseImage).HasMaxLength(100);
-
-                entity.Property(e => e.TypeId).HasColumnName("TypeID");
-
-                entity.HasOne(d => d.Type)
-                    .WithMany(p => p.ChauffeurInfos)
-                    .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Chauffeur__TypeI__33D4B598");
-            });
-
-            modelBuilder.Entity<ChauffeurLicense>(entity =>
-            {
-                entity.HasKey(e => new { e.ChauffeurId, e.TypeId })
-                    .HasName("PK__Chauffeu__10CC532D867F656A");
-
-                entity.ToTable("ChauffeurLicense");
-
-                entity.Property(e => e.ChauffeurId).HasColumnName("ChauffeurID");
-
-                entity.Property(e => e.TypeId).HasColumnName("TypeID");
-
-                entity.HasOne(d => d.Chauffeur)
-                    .WithMany(p => p.ChauffeurLicenses)
-                    .HasForeignKey(d => d.ChauffeurId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Chauffeur__Chauf__46E78A0C");
-
-                entity.HasOne(d => d.Type)
-                    .WithMany(p => p.ChauffeurLicenses)
-                    .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Chauffeur__TypeI__47DBAE45");
+                entity.Property(e => e.StartTime).HasDefaultValueSql("('08:00:00.00')");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -210,10 +178,74 @@ namespace webdev_semester_1.Models
                 entity.Property(e => e.Mail).HasMaxLength(50);
             });
 
+            modelBuilder.Entity<DriverInfo>(entity =>
+            {
+                entity.ToTable("DriverInfo");
+
+                entity.Property(e => e.DriverInfoId).HasColumnName("DriverInfoID");
+
+                entity.Property(e => e.DriverLicenseImage)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.EuqualificationExperationDate).HasColumnName("EUQualificationExperationDate");
+
+                entity.Property(e => e.EuqualificationImage)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("EUQualificationImage");
+
+                entity.Property(e => e.RouteType).HasMaxLength(100);
+
+                entity.Property(e => e.TruckLicenseImage)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.TypeId).HasColumnName("TypeID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.DriverInfos)
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__DriverInf__TypeI__403A8C7D");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.DriverInfos)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__DriverInf__UserI__412EB0B6");
+            });
+
+            modelBuilder.Entity<DriverLicense>(entity =>
+            {
+                entity.HasKey(e => new { e.DriverId, e.TypeId })
+                    .HasName("PK__DriverLi__B4A73D1D7CECB8AD");
+
+                entity.ToTable("DriverLicense");
+
+                entity.Property(e => e.DriverId).HasColumnName("DriverID");
+
+                entity.Property(e => e.TypeId).HasColumnName("TypeID");
+
+                entity.HasOne(d => d.Driver)
+                    .WithMany(p => p.DriverLicenses)
+                    .HasForeignKey(d => d.DriverId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__DriverLic__Drive__4F7CD00D");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.DriverLicenses)
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__DriverLic__TypeI__5070F446");
+            });
+
             modelBuilder.Entity<LicenseType>(entity =>
             {
                 entity.HasKey(e => e.TypeId)
-                    .HasName("PK__LicenseT__516F039579E2F868");
+                    .HasName("PK__LicenseT__516F0395EABB3AED");
 
                 entity.ToTable("LicenseType");
 
@@ -234,6 +266,10 @@ namespace webdev_semester_1.Models
                     .IsRequired()
                     .HasMaxLength(30);
 
+                entity.Property(e => e.Read)
+                    .IsRequired()
+                    .HasDefaultValueSql("('0')");
+
                 entity.Property(e => e.ReceiverUserId).HasColumnName("ReceiverUserID");
 
                 entity.Property(e => e.SenderUserId).HasColumnName("SenderUserID");
@@ -242,13 +278,13 @@ namespace webdev_semester_1.Models
                     .WithMany(p => p.MessageReceiverUsers)
                     .HasForeignKey(d => d.ReceiverUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Message__Receive__3C69FB99");
+                    .HasConstraintName("FK__Message__Receive__44FF419A");
 
                 entity.HasOne(d => d.SenderUser)
                     .WithMany(p => p.MessageSenderUsers)
                     .HasForeignKey(d => d.SenderUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Message__SenderU__3D5E1FD2");
+                    .HasConstraintName("FK__Message__SenderU__45F365D3");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -281,8 +317,6 @@ namespace webdev_semester_1.Models
 
                 entity.Property(e => e.AddressId).HasColumnName("AddressID");
 
-                entity.Property(e => e.ChauffeurInfoId).HasColumnName("ChauffeurInfoID");
-
                 entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.FirstName)
@@ -306,23 +340,43 @@ namespace webdev_semester_1.Models
                 entity.HasOne(d => d.Address)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.AddressId)
-                    .HasConstraintName("FK__User__AddressID__38996AB5");
-
-                entity.HasOne(d => d.ChauffeurInfo)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.ChauffeurInfoId)
-                    .HasConstraintName("FK__User__ChauffeurI__398D8EEE");
+                    .HasConstraintName("FK__User__AddressID__35BCFE0A");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.DepartmentId)
-                    .HasConstraintName("FK__User__Department__36B12243");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__User__Department__33D4B598");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__User__RoleID__37A5467C");
+                    .HasConstraintName("FK__User__RoleID__34C8D9D1");
+            });
+
+            modelBuilder.Entity<UserAvailability>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.AvailabilityId })
+                    .HasName("PK__UserAvai__1A2B5B357EA3D80A");
+
+                entity.ToTable("UserAvailability");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.AvailabilityId).HasColumnName("AvailabilityID");
+
+                entity.HasOne(d => d.Availability)
+                    .WithMany(p => p.UserAvailabilities)
+                    .HasForeignKey(d => d.AvailabilityId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__UserAvail__Avail__3D5E1FD2");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserAvailabilities)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__UserAvail__UserI__3C69FB99");
             });
 
             OnModelCreatingPartial(modelBuilder);

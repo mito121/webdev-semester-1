@@ -22,10 +22,10 @@ namespace webdev_semester_1.Models
         public int StartCityId { get; set; }
         public int ContactUserId { get; set; }
         public int? ReplacementUserId { get; set; }
-        public int ChauffeurId { get; set; }
+        public int DriverUserId { get; set; }
 
-        public virtual User Chauffeur { get; set; }
         public virtual User ContactUser { get; set; }
+        public virtual User DriverUser { get; set; }
         public virtual User ReplacementUser { get; set; }
         public virtual City StartCity { get; set; }
         public virtual Status Status { get; set; }

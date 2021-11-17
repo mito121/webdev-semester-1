@@ -9,14 +9,14 @@ namespace webdev_semester_1.Models
     {
         public LicenseType()
         {
-            ChauffeurInfos = new HashSet<ChauffeurInfo>();
-            ChauffeurLicenses = new HashSet<ChauffeurLicense>();
+            DriverInfos = new HashSet<DriverInfo>();
+            DriverLicenses = new HashSet<DriverLicense>();
         }
 
         public int TypeId { get; set; }
         public string TypeName { get; set; }
 
-        public virtual ICollection<ChauffeurInfo> ChauffeurInfos { get; set; }
-        public virtual ICollection<ChauffeurLicense> ChauffeurLicenses { get; set; }
+        public virtual ICollection<DriverInfo> DriverInfos { get; set; }
+        public virtual ICollection<DriverLicense> DriverLicenses { get; set; }
     }
 }
