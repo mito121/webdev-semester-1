@@ -4,18 +4,67 @@
 }
 <link rel="stylesheet" href="~/css/site.css" />
 
-<div class="container pt-3">
-    
-    <div class="d-flex justify-content-between">
-        <a href="#">
-            <img src="~/img/backArrow.svg" />
-        </a>
+<section>
+    <div class="container pt-3">
 
-        <div>
+        <div class="d-flex justify-content-between">
             <a href="#">
-                <img src="~/img/logo.svg" />
+                <img src="~/img/backArrow.svg" />
             </a>
+
+            <div>
+                <a href="#">
+                    <img src="~/img/logo.svg" />
+                </a>
+            </div>
         </div>
+
+        <form class="mt-4">
+            <div class="form-group ">
+                <label for="nameInput">Navn</label>
+                <input type="text" class="form-control" id="nameInput" />
+            </div>
+            <div class="form-group ">
+                <label for="mailInput">Mail</label>
+                <input type="email" class="form-control" id="mailInput" />
+            </div>
+            <div class="form-group ">
+                <label for="phoneInput">Telefon nr.</label>
+                <input type="tel" class="form-control" id="phoneInput" />
+            </div>
+            <div class="form-group ">
+                <label for="addressInput">Bopæl</label>
+                <input type="text" class="form-control" id="addressInput" />
+            </div>
+            <div class="form-group ">
+                <label for="lokationInput">Lokation</label>
+                <input type="text" class="form-control" id="lokationInput" />
+            </div>
+            <div class="form-group ">
+                <label for="tyoeInput">Type</label>
+                <input type="text" class="form-control" id="typeInput" />
+            </div>
+            <div class="form-group ">
+                <label for="licenseTypeInput">Kørekort type</label>
+                <input type="text" class="form-control" id="licenseTypeInput" />
+            </div>
+            <div class="form-group ">
+                <label for="licenseExpireInput">Udløbsdato (Kørekort)</label>
+                <input type="date" class="form-control" id="licenseExpireInput" />
+            </div>
+
+            <div class="form-group mt-5">
+                <label for="driverCardUpload">Førerkort</label>
+                <small id="cardHelp" class="form-text text-muted">Indtast udløbsdato af dit førerkort og upload et billede af førerkortet.</small>
+                <input type="file" class="form-control" id="driverCardUpload" aria-describedby="cardHelp" />
+            </div>
+            <div class="form-group mt-2">
+                <label for="EUCardUpload">EU Kvalifikationsbevis</label>
+                <small id="EUcardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
+                <input type="file" class="form-control" id="EUCardUpload" aria-describedby="EUcardHelp" />
+            </div>
+            <button type="submit" class="btn btn-primary my-3">Anmod om registrering</button>
+        </form>
     </div>
-</div>  
+</section>
 
