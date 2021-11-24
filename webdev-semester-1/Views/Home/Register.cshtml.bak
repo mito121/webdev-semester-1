@@ -1,4 +1,4 @@
-ï»¿@{
+@{
     Layout = "_LoginLayout";
     ViewData["Title"] = "Register";
 }
@@ -22,6 +22,7 @@
         </div>
 
         <form class="mt-4">
+            æøå
             <div class="form-group ">
                 <label for="nameInput">Navn</label>
                 <input type="text" class="form-control" id="nameInput" />
@@ -35,7 +36,7 @@
                 <input type="tel" class="form-control" id="phoneInput" />
             </div>
             <div class="form-group ">
-                <label for="addressInput">BopÃ¦l</label>
+                <label for="addressInput">Bopæl</label>
                 <input type="text" class="form-control" id="addressInput" />
             </div>
             <div class="form-group ">
@@ -47,19 +48,19 @@
                 <input type="text" class="form-control" id="typeInput" />
             </div>
             <div class="form-group ">
-                <label for="licenseTypeInput">KÃ¸rekort type</label>
+                <label for="licenseTypeInput">Kørekort type</label>
                 <input type="text" class="form-control" id="licenseTypeInput" />
             </div>
             <div class="form-group ">
-                <label for="licenseExpireInput">UdlÃ¸bsdato (KÃ¸rekort)</label>
+                <label for="licenseExpireInput">Udløbsdato (Kørekort)</label>
                 <input type="date" class="form-control" id="licenseExpireInput" />
             </div>
 
             <div class="form-group mt-5">
-                <label for="driverCardUpload">FÃ¸rerkort</label>
-                <small id="cardHelp" class="form-text text-muted">Indtast udlÃ¸bsdato af dit fÃ¸rerkort og upload et billede af fÃ¸rerkortet.</small>
+                <label for="driverCardUpload">Førerkort</label>
+                <small id="cardHelp" class="form-text text-muted">Indtast udløbsdato af dit førerkort og upload et billede af førerkortet.</small>
 
-                <label for="driverCardExpireInput" class="mt-2">UdlÃ¸bsdato</label>
+                <label for="driverCardExpireInput" class="mt-2">Udløbsdato</label>
                 <input type="date" class="form-control" id="driverCardExpireInput" />
                 <label class="btn btnColor my-3">
                     Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
@@ -68,8 +69,8 @@
             </div>
             <div class="form-group mt-3">
                 <label for="EUCardUpload">EU Kvalifikationsbevis</label>
-                <small id="EUcardHelp" class="form-text text-muted">Indtast udlÃ¸bsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
-                <label for="EUCardExpireInput" class="mt-2">UdlÃ¸bsdato</label>
+                <small id="EUcardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
+                <label for="EUCardExpireInput" class="mt-2">Udløbsdato</label>
                 <input type="date" class="form-control" id="EUCardExpireInput" />
                 <label class="btn btnColor my-3">
                     Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
