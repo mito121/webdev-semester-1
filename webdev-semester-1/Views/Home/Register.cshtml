@@ -1,0 +1,83 @@
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Register";
+}
+
+<link href="~/css/register.css" rel="stylesheet" />
+
+
+<section class="px-2">
+    <div class="container pt-3">
+
+        <div class="d-flex justify-content-between">
+            <a href="#">
+                <img src="~/img/backArrow.svg" />
+            </a>
+
+            <div>
+                <a href="#">
+                    <img src="~/img/logo.svg" />
+                </a>
+            </div>
+        </div>
+
+        <form class="mt-4">
+            <div class="form-group ">
+                <label for="nameInput">Navn</label>
+                <input type="text" class="form-control" id="nameInput" />
+            </div>
+            <div class="form-group ">
+                <label for="mailInput">Mail</label>
+                <input type="email" class="form-control" id="mailInput" />
+            </div>
+            <div class="form-group ">
+                <label for="phoneInput">Telefon nr.</label>
+                <input type="tel" class="form-control" id="phoneInput" />
+            </div>
+            <div class="form-group ">
+                <label for="addressInput">Bopæl</label>
+                <input type="text" class="form-control" id="addressInput" />
+            </div>
+            <div class="form-group ">
+                <label for="lokationInput">Lokation <img src="~/img/infoIcon.svg" /></label>
+                <input type="text" class="form-control" id="lokationInput" />
+            </div>
+            <div class="form-group ">
+                <label for="tyoeInput">Type <img src="~/img/infoIcon.svg" /></label>
+                <input type="text" class="form-control" id="typeInput" />
+            </div>
+            <div class="form-group ">
+                <label for="licenseTypeInput">Kørekort type</label>
+                <input type="text" class="form-control" id="licenseTypeInput" />
+            </div>
+            <div class="form-group ">
+                <label for="licenseExpireInput">Udløbsdato (Kørekort)</label>
+                <input type="date" class="form-control" id="licenseExpireInput" />
+            </div>
+
+            <div class="form-group mt-5">
+                <label for="driverCardUpload">Førerkort</label>
+                <small id="cardHelp" class="form-text text-muted">Indtast udløbsdato af dit førerkort og upload et billede af førerkortet.</small>
+
+                <label for="driverCardExpireInput" class="mt-2">Udløbsdato</label>
+                <input type="date" class="form-control" id="driverCardExpireInput" />
+                <label class="btn btnColor my-3">
+                    Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
+                </label>
+
+            </div>
+            <div class="form-group mt-3">
+                <label for="EUCardUpload">EU Kvalifikationsbevis</label>
+                <small id="EUcardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
+                <label for="EUCardExpireInput" class="mt-2">Udløbsdato</label>
+                <input type="date" class="form-control" id="EUCardExpireInput" />
+                <label class="btn btnColor my-3">
+                    Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
+                </label>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn my-3 vw-100">Anmod om registrering</button>
+            </div>
+        </form>
+    </div>
+</section>
