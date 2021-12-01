@@ -10,8 +10,8 @@ using webdev_semester_1.Models;
 namespace webdev_semester_1.Migrations
 {
     [DbContext(typeof(AlexAndersenDBContext))]
-    [Migration("20211130172258_RemoveUserIdAndRoleIdDuplicates")]
-    partial class RemoveUserIdAndRoleIdDuplicates
+    [Migration("20211201095157_RemoveUnhashedUserPassword")]
+    partial class RemoveUnhashedUserPassword
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -565,13 +565,10 @@ namespace webdev_semester_1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Phone")
                         .HasColumnType("int");

@@ -47,6 +47,16 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(100)]
+            [Display(Name = "Fornavn")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(100)]
+            [Display(Name = "Efternavn")]
+            public string LastName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,7 +85,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, DepartmentId = 1, RoleId = 1 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

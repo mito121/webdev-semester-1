@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using webdev_semester_1.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace webdev_semester_1
 {
@@ -28,8 +29,25 @@ namespace webdev_semester_1
 
             services.AddIdentity<User, Role>(options =>
             {
+
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<AlexAndersenDBContext>();
+            }).AddEntityFrameworkStores<AlexAndersenDBContext>().AddDefaultTokenProviders().AddDefaultUI();
 
 
             services.AddDbContext<AlexAndersenDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("webdev_semester_1Context")));
@@ -63,6 +81,8 @@ namespace webdev_semester_1
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

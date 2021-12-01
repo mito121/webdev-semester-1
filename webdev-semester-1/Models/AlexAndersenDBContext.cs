@@ -36,7 +36,7 @@ namespace webdev_semester_1.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=LAPTOP-7CKEKRSF\\SQLEXPRESS;Database=AlexAndersenDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-QHPAM2T5;Database=AlexAndersenDB;Trusted_Connection=True;MultipleActiveResultSets=True");
             }
         }
 
@@ -328,13 +328,13 @@ namespace webdev_semester_1.Models
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Mail)
+                entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Password)
+                entity.Property(e => e.PasswordHash)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 

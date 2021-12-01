@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webdev_semester_1.Models;
 
 namespace webdev_semester_1.Migrations
 {
     [DbContext(typeof(AlexAndersenDBContext))]
-    partial class AlexAndersenDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211201100038_RemovedUserEmailAndPhoneDuplicates")]
+    partial class RemovedUserEmailAndPhoneDuplicates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -561,8 +563,8 @@ namespace webdev_semester_1.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
