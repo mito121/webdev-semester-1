@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace webdev_semester_1.Models
 {
-    public partial class User : IdentityUser<int>
+    public partial class User
     {
         public User()
         {
