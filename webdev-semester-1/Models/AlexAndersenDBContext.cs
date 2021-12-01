@@ -294,7 +294,7 @@ namespace webdev_semester_1.Models
 
                 entity.Property(e => e.Id).HasColumnName("RoleID");
 
-                entity.Property(e => e.RoleName)
+                entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
             });
