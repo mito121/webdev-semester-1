@@ -25,7 +25,15 @@ namespace webdev_semester_1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<AlexAndersenDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("webdev_semester_1Context")));
+
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<AlexAndersenDBContext>();
+
+
+            services.AddDbContext<AlexAndersenDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("webdev_semester_1Context")));
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
         }
 
@@ -47,6 +55,7 @@ namespace webdev_semester_1
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

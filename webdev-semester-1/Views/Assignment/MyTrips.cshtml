@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Assignment>
+
+@{
+    ViewData["Title"] = "MyTrips";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/card.css" rel="stylesheet" />
+@*<link href="~/css/cardActive.css" rel="stylesheet" />
+<link href="~/css/cardDone.css" rel="stylesheet" />*@
+
+<h1 class="mb-4">Mine Ture</h1>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Kommende Ture</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Afsluttede Ture</a>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br />
+        <div class="row">
+            <div class="col-12">
+                @foreach (var assignment in Model)
+                {
+                    string cardHeader = $"{assignment.StartTime.Hour}:{assignment.StartTime.Minute} Længde {assignment.Duration}T";
+                    string startDateDay = char.ToUpper(assignment.StartDate.ToString("dddd")[0]) + assignment.StartDate.ToString("dddd").Substring(1);
+                    //string startDateMonth = char.ToUpper(assignment.StartDate.ToString("M")[4]) + assignment.StartDate.ToString("M").Substring(0);
+                    string wholeDate = assignment.StartDate.ToString("M");
+
+                    if (assignment.StatusId != 4)
+                    {
+                        <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
+                            <div class="tripCardActive">
+                                <div>
+                                    <h2>@cardHeader</h2>
+                                </div>
+                                <div>
+                                    <p>@assignment.CountryCodeStart - @assignment.CountryCodeEnd</p>
+                                </div>
+                                <div>
+                                    <h3>@startDateDay, @wholeDate</h3>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <br />
+        <div class="row">
+            <div class="col-12">
+                @foreach (var assignment in Model)
+                {
+                    string cardHeader = $"{assignment.StartTime.Hour}:{assignment.StartTime.Minute} Længde {assignment.Duration}T";
+                    string startDateDay = char.ToUpper(assignment.StartDate.ToString("dddd")[0]) + assignment.StartDate.ToString("dddd").Substring(1);
+                    //string startDateMonth = char.ToUpper(assignment.StartDate.ToString("M")[4]) + assignment.StartDate.ToString("M").Substring(0);
+                    string wholeDate = assignment.StartDate.ToString("M");
+
+                    if (assignment.StatusId == 4)
+                    {
+                        <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
+                            <div class="tripCardDone">
+                                <div>
+                                    <h2>@cardHeader</h2>
+                                </div>
+                                <div>
+                                    <p>@assignment.CountryCodeStart - @assignment.CountryCodeEnd</p>
+                                </div>
+                                <div>
+                                    <h3>@startDateDay, @wholeDate</h3>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
