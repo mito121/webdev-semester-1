@@ -14,7 +14,7 @@ namespace webdev_semester_1.Models
         }
 
         //public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        //public string RoleName { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
     }
