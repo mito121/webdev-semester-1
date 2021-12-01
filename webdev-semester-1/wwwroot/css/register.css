@@ -1,4 +1,17 @@
-﻿.form-group {
+* {
+    font-family: Raleway,Arial,Helvetica,sans-serif;
+}
+
+p {
+    font-size: 20px;
+    color: #343a40;
+}
+
+h5 {
+    color: #00904A;
+}
+
+.form-group {
     color: #00904A;
     font-family: Raleway,Arial,Helvetica,sans-serif;
     font-weight:bold;
