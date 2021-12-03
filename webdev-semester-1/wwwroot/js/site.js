@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿if (document.querySelector('#calendar1')) {
+    function selectDate(date) {
+        $('#calendar1').updateCalendarOptions({
+            date: date
+        });
+        console.log(calendar.getSelectedDate());
+    }
 
-// Write your JavaScript code.
+    var defaultConfig = {
+        weekDayLength: 1,
+        date: '08/05/2021',
+        onClickDate: selectDate,
+        showYearDropdown: true,
+        startOnMonday: true,
+    };
+
+    var calendar = $('#calendar1').calendar(defaultConfig);
+    console.log(calendar.getSelectedDate());
+}
