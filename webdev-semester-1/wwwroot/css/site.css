@@ -1,10 +1,23 @@
 ﻿* {
     box-sizing: border-box;
+    transition: .3s;
+    text-decoration: none;
+}
+:root {
+    --primary-color: #00904A;
+}
+::selection {
+    background: #00904A;
+    color:White
 }
 
 ul, ol {
     margin: 0;
     padding: 0;
+}
+hr {
+    border: 3px solid #d8d8d870;
+    border-radius: 10px;
 }
 
 main {
@@ -207,4 +220,41 @@ ul.home-nav li a {
     width: 30px;
     padding: 3px;
     object-fit: contain;
+}
+
+/*Details*/
+.infoBox {
+    margin: 1rem 0rem;
+    padding: 1rem 1rem;
+    background-color: #fff;
+    margin-bottom: 20px;
+    filter: drop-shadow(0pt 3pt 6pt #00000029);
+}
+.infoBox a {
+        text-decoration: underline;
+        color: var(--primary-color);
+}
+    .infoBox a,p {
+        font-size:1.3rem;
+    }
+
+.infoBoxGrid3 {
+    display: grid;
+    text-align: left;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+}
+.infoBoxGrid2 {
+    display: grid;
+    text-align: left;
+    grid-template-columns: repeat(2, 1fr);
+   
+}
+
+.cancelTrip {
+    font-size: 2rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }

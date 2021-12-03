@@ -5,5 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<nav>
+    <i class="fas fa-arrow-left"></i>
+    <i class="fas fa-bars"></i>
+</nav>
 
-<div>Hej! @Model.AssignmentId</div>
+<div class="tripCardActive">
+    <h2>@Model.StartTime</h2>
+    <p>@Model.CountryCodeStart</p>
+    <h3>30 minutter</h3>
+</div>
+<div class="tripDetails infoBox">
+    <p>Information om tur</p>
+    <p>Denne tur indeholder 5 tons skumfiduser som er let lol</p>
+</div>
+<div class="details infoBox">
+    <p>Detaljer</p>
+    <div class="break infoBoxGrid3">
+        <i class="fas fa-coffee fa-2x"></i>
+        <p>Pause længde</p>
+        <p>1 T</p>
+    </div>
+    <hr class="lineSeperator" />
+    <div class="workTime infoBoxGrid3">
+        <i class="fas fa-clock fa-2x"></i>
+        <p>Arbejds tid</p>
+        <a>12T 30M</a>
+    </div>
+</div>
+<div class="pickupLocation infoBox">
+    <p>Lokation</p>
+    <i class="fas fa-map-marker-alt fa-2x"> Denmark</i>
+    <p>Alex Andersen transport, Logistikvej 25a, 5250 Odense</p>
+    <a href="https://goo.gl/maps/iFDTGi5d8FkSmDR3A" target="_blank">Find lokation</a>
+</div>
+<div class="contactInfo infoBox">
+    <p>Kontakt info</p>
+    <div class="phoneNumber infoBoxGrid2">
+        <i class="fas fa-phone fa-2x"> </i>
+        <a href="tel:+4566188197">+45 66 18 81 97</a>
+    </div>
+    <hr class="lineSeperator" />
+    <div class="contactMail infoBoxGrid2">
+        <i class="fas fa-envelope fa-2x"></i>
+        <a href="mailto: abc@example.com">info@alex-andersen.dk</a>
+    </div>
+</div>
+<div class="cancelTrip infoBox">
+    <a href="tel:+4566188197">Afmeld tur</a>
+</div>
