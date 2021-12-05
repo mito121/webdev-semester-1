@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using webdev_semester_1.Models;
+using System.ComponentModel;
 
 namespace webdev_semester_1.Areas.Identity.Pages.Account
 {
@@ -43,15 +44,17 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Brugernavn påkrævet.")]
             [EmailAddress]
+            [DisplayName("Brugernavn (e-mail lige pt lul)")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Adgangskode påkrævet.")]
             [DataType(DataType.Password)]
+            [DisplayName("Adgangskode")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Husk mig")]
             public bool RememberMe { get; set; }
         }
 
