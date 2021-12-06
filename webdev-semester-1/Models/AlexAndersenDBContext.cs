@@ -36,7 +36,7 @@ namespace webdev_semester_1.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9CDG7Q1\\SQLEXPRESS;Database=AlexAndersenDB;Trusted_Connection=True;MultipleActiveResultSets=True");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-LF2CSJQP\\SQLEXPRESS;Database=AlexAndersenDB;Trusted_Connection=True;MultipleActiveResultSets=True");
             }
         }
 
