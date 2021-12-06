@@ -7,7 +7,12 @@ body{
     padding: 0;
 }
 
-section{
+h5 {
+    color: #009E58;
+    font-weight:bold;
+}
+
+header{
     position: relative;
     width: 100%;
     height: 40vh;
@@ -18,7 +23,7 @@ section{
     
 }
 
-    section:before {
+    header:before {
         content: '';
         position: absolute;
         top: 0;
@@ -33,3 +38,28 @@ section{
     .header{
         z-index: 1;
     }
+
+.editProfile{
+    background-color: transparent;
+    border: white;
+    border-style: solid;
+    border-radius: 5px;  
+    width: 180px;
+    height: 45px;
+    color: white;
+    font-weight: bold;
+}
+
+.textCaption {
+    font-size: 20px;
+    font-weight: bold;
+    color: #009E58;
+}
+
+.textValue{
+    font-size: 20px;
+}
+
+.diverLicenseIcons img {
+    margin: 10px 5px;
+}

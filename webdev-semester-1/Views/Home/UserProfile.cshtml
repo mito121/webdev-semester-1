@@ -5,9 +5,55 @@
 
 <link href="~/css/userProfile.css" rel="stylesheet" />
 
-<section>
+<header>
     <div class="header text-center text-white">
-        <h1>test</h1>
-        <p>lorem ipsum</p>
+        <!--Name need to be pulled from database-->
+        <h1>Aron Grace</h1>
+
+        <button type="button" class="mt-5 editProfile">Rediger profil</button>
+    </div>
+</header>
+
+<section class="mt-5">
+    <hr />
+   <div class="mx-3 d-flex justify-content-between">
+        <p class="textCaption">Navn:</p>
+        <!--Value needs to be pulled from database-->
+       <p class="textValue text-left">Aron Grace</div>
+    <hr />
+
+    <div class="mx-3 d-flex justify-content-between">
+        <p class="textCaption">Adresse:</p>
+        <!--Value needs to be pulled from database-->
+       <p class="textValue text-left">Horsensvej 48, <br /> 8722 Hedensted</p>
+    </div>
+    <hr />
+
+    <div class="mx-3 d-flex justify-content-between">
+        <p class="textCaption">Lokation:</p>
+        <!--Value needs to be pulled from database-->
+       <p class="textValue text-left">Alex Andersen,
+Odense</div>
+    <hr />
+
+    <div class="mx-3 d-flex justify-content-between">
+        <p class="textCaption">Type:</p>
+        <!--Value needs to be pulled from database-->
+       <p class="textValue text-left">National & International</div>
+    <hr />
+
+
+    <div class="driverLicenseType text-center my-5">
+        <h5 class="mb-4">Kørekort Oplysninger</h5>
+
+        <div class="d-flex flex-wrap justify-content-center diverLicenseIcons">
+            <img src="~/img//userProfile/am.svg" />
+            <img src="~/img//userProfile/b.svg" />
+            <img src="~/img//userProfile/c1.svg" />
+            <img src="~/img//userProfile/c1e.svg" />
+            <img src="~/img//userProfile/c.svg" />
+            <img src="~/img//userProfile/ce.svg" />
+        </div>
+
     </div>
 </section>
