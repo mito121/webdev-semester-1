@@ -24,17 +24,21 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public readonly AlexAndersenDBContext _db;
+
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            AlexAndersenDBContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
         }
 
         [BindProperty]
@@ -71,6 +75,30 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            /////////////////
+            // Driver License
+
+            // Driver License number
+            [Required]
+            [Display(Name = "Kørekort nummer")]
+            public int DriverLicenseNo { get; set; }
+
+            // DriverLicenseExperationDate
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Kørekort udløbsdato")]
+            public DateTime DriverLicenseExperationDate { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Truck udløbsdato")]
+            public DateTime TruckLicenseExperationDate { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "EU Kvalifikationsbevis udløbsdato")]
+            public DateTime EUQualificationExperationDate { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -85,10 +113,52 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, DepartmentId = 1, RoleId = 1 };
+                var user = new User { 
+                    UserName = Input.Email,
+                    Email = Input.Email, FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    DepartmentId = 1,
+                    RoleId = 1
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+
+                    // Add driver license
+                    var license = new DriverLicense
+                    {
+                        DriverId = user.Id,
+                        TypeId = 1
+                    };
+
+                    _db.DriverLicenses.Add(license);
+                    _db.SaveChanges();
+
+
+                    // Add driver info
+                    var driverInfo = new DriverInfo
+                    {
+                        DriverLicenseNo = Input.DriverLicenseNo,
+                        DriverLicenseExperationDate = Input.DriverLicenseExperationDate,
+                        DriverLicenseImage = "driver-license.jpg",
+                        TruckLicenseExperationDate = Input.TruckLicenseExperationDate,
+                        TruckLicenseImage = "truck-license.jpg",
+                        EuqualificationExperationDate = Input.EUQualificationExperationDate,
+                        EuqualificationImage = "eu-qualification.jpg",
+                        TypeId = 1,
+                        UserId = user.Id
+                    };
+
+                    _db.DriverInfos.Add(driverInfo);
+                    _db.SaveChanges();
+
+
+
+
+
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
