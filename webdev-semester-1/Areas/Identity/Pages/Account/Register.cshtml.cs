@@ -92,12 +92,12 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "Truck udløbsdato")]
+            [Display(Name = "Udløbsdato")] // TruckLicense / Førekort udløbsdato
             public DateTime TruckLicenseExperationDate { get; set; }
 
             [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "EU Kvalifikationsbevis udløbsdato")]
+            [Display(Name = "Udløbsdato")] // EU Kvalifikations udløbsdato
             public DateTime EUQualificationExperationDate { get; set; }
         }
 
