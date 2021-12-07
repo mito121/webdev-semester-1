@@ -65,6 +65,11 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Required(ErrorMessage = "Telefonnummer er påkrævet.")]
+            [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{8,12}$", ErrorMessage = "Ugyldigt telefonnummer.")]
+            [Display(Name = "Telefonnr.")]
+            public string Phone { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -75,6 +80,10 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Bopæl")]
+            public string Address { get; set; }
 
             /////////////////
             // Driver License
@@ -90,12 +99,12 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             [Display(Name = "Kørekort udløbsdato")]
             public DateTime DriverLicenseExperationDate { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Førekort udløbsdato er påkrævet.")]
             [DataType(DataType.Date)]
             [Display(Name = "Udløbsdato")] // TruckLicense / Førekort udløbsdato
             public DateTime TruckLicenseExperationDate { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "EU Kvalifikationsbevisudløbsdato er påkrævet.")]
             [DataType(DataType.Date)]
             [Display(Name = "Udløbsdato")] // EU Kvalifikations udløbsdato
             public DateTime EUQualificationExperationDate { get; set; }
@@ -129,7 +138,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                     var license = new DriverLicense
                     {
                         DriverId = user.Id,
-                        TypeId = 1
+                        TypeId = 3
                     };
 
                     _db.DriverLicenses.Add(license);
@@ -146,7 +155,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                         TruckLicenseImage = "truck-license.jpg",
                         EuqualificationExperationDate = Input.EUQualificationExperationDate,
                         EuqualificationImage = "eu-qualification.jpg",
-                        TypeId = 1,
+                        TypeId = 3,
                         UserId = user.Id
                     };
 
@@ -154,7 +163,15 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                     _db.SaveChanges();
 
 
+                    // Add Address
+                    var address = new Address
+                    {
+                        AddressName = Input.Address,
+                        CityId = 1
+                    };
 
+                    _db.Addresses.Add(address);
+                    _db.SaveChanges();
 
 
 
