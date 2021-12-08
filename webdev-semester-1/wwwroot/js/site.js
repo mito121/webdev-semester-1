@@ -1,10 +1,20 @@
-﻿if (document.querySelector('#calendar1')) {
+if (document.querySelector('#calendar1')) {
     function selectDate(date) {
         $('#calendar1').updateCalendarOptions({
             date: date
         });
         console.log(calendar.getSelectedDate());
     }
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+document.getElementById("sideNav").addEventListener("click", openNav);
 
     var defaultConfig = {
         weekDayLength: 1,
