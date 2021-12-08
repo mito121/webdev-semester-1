@@ -6,7 +6,6 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
-    transition: .3s;
     text-decoration: none;
 }
 :root {
@@ -82,28 +81,29 @@ main {
     background-color: #fff;
     overflow-x: hidden;
     padding-top: 60px;
+    transition: 250ms;
 }
 
-    .sidenav a {
-        padding: 2rem 2rem;
-        text-decoration: none;
-        font-size: 25px;
-        color: #000;
-        display: block;
-        transition: 0.3s;
-    }
+.sidenav a {
+    padding: 2rem 2rem;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000;
+    display: block;
+    transition: 0.3s;
+}
 
-        .sidenav a:hover {
-            color: var(--primary-color);
-        }
+.sidenav a:hover {
+    color: var(--primary-color);
+}
 
-    .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        left: 0;
-        font-size: 36px;
-        margin-right: 50px;
-    }
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    margin-right: 50px;
+}
 
 .top-nav-logo img{
     width: 65px;
@@ -327,9 +327,9 @@ ul.home-nav li a {
     justify-content: center;
     align-content: center;
 }
-    .cancelTrip button {
-        font-size:1.5rem;
-        color: var(--primary-color);
-        background: none;
-        border: none;
-    }
+.cancelTrip button {
+    font-size:1.5rem;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+}
