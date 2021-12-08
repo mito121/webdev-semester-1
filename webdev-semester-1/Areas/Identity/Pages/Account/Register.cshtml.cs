@@ -48,6 +48,8 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        public IEnumerable<City> Cities { get; set; }
+
         public class InputModel
         {
             [Required]
@@ -71,6 +73,11 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             public string Phone { get; set; }
 
             [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = "Brugernavn")]
+            public string Username { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -88,6 +95,10 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Postnr.")]
             public int Zip { get; set; }
+
+            [Required]
+            [Display(Name = "By")]
+            public int CityID { get; set; }
 
             /////////////////
             // Driver License
@@ -127,8 +138,9 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new User { 
-                    UserName = Input.Email,
-                    Email = Input.Email, FirstName = Input.FirstName,
+                    UserName = Input.Username,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     DepartmentId = 1,
                     RoleId = 1
@@ -171,7 +183,8 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                     var address = new Address
                     {
                         AddressName = Input.Address,
-                        CityId = 1
+                        PostalCode = Input.Zip,
+                        CityId = Input.CityID
                     };
 
                     _db.Addresses.Add(address);
