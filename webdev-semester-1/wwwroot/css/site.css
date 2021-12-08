@@ -1,7 +1,11 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+﻿/*@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:500;
     transition: .3s;
     text-decoration: none;
 }
@@ -9,7 +13,7 @@
     --primary-color: #00904A;
 }
 ::selection {
-    background: #00904A;
+    background: var(--primary-color);
     color:White
 }
 
@@ -20,7 +24,7 @@ ul, ol {
 hr {
     border: 3px solid #d8d8d870;
     border-radius: 10px;
-    width: 90%
+    width: 99%
 }
 .fas{
     padding: 0 1rem;
@@ -31,18 +35,75 @@ main {
     padding-top:85px;
 }
 
+/* Bootstrap edits start*/
+.nav-tabs .nav-link.active {
+    color: #000;
+    background-color: #fff;
+    border-color: var(--primary-color) var(--primary-color) #fff;
+}
+.nav-tabs .nav-link {
+    border: 2px solid transparent;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+.modal{
+    top:25vh;
+}
+.modal-body a {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+
+/* Bootstrap edits end*/
+
 /* Top navigation */
 .top-nav {
+    top:0;
+    left:0;
     padding: 6px 12px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #FFF;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
     position: fixed;
     z-index: 99;
 }
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 2rem 2rem;
+        text-decoration: none;
+        font-size: 25px;
+        color: #000;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: var(--primary-color);
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 36px;
+        margin-right: 50px;
+    }
 
 .top-nav-logo img{
     width: 65px;
@@ -232,6 +293,7 @@ ul.home-nav li a {
 /*Details*/
 .infoBox {
     margin: 3rem 0;
+    padding: 1.5rem 1.5rem;
     background-color: #fff;
     margin-bottom: 20px;
     filter: drop-shadow(0pt 3pt 6pt #00000029);
@@ -240,19 +302,22 @@ ul.home-nav li a {
         text-decoration: underline;
         color: var(--primary-color);
 }
-    .infoBox a,p {
-        font-size: 1.2rem;
+    .infoBox a,p,span {
+        font-size: 1rem;
+        text-align:left;
     }
 
-.infoBoxGrid3 {
+/*.infoBoxGrid3 {
     display: grid;
-    text-align: left;
-    grid-template-columns: repeat(3, 1fr);
-}
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    justify-items: start;
+}*/
+
 .infoBoxGrid2 {
     display: grid;
-    text-align: left;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
 }
 
 .cancelTrip {
@@ -262,3 +327,9 @@ ul.home-nav li a {
     justify-content: center;
     align-content: center;
 }
+    .cancelTrip button {
+        font-size:1.5rem;
+        color: var(--primary-color);
+        background: none;
+        border: none;
+    }

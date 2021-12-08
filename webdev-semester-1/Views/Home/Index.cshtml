@@ -1,7 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+<nav class="top-nav">
+    <div class="top-nav-logo">
+        <a asp-area="" asp-controller="Home" asp-action="Index"><img src="https://www.alex-andersen.dk/cdn/assets/aalogo-square.db4301db.png" alt="Logo" /></a>
+    </div>
 
+    <div class="top-nav-menu">
+        <ul>
+            <li><a href="#"><i class="fas fa-user"></i></a></li>
+            <li><a href="#"><i class="fas fa-cog"></i></a></li>
+        </ul>
+    </div>
+</nav>
 <div class="h-full d-flex flex-column justify-content-between">
     <div class="row">
         <div class="col-12">
