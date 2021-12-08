@@ -64,7 +64,14 @@
                 <div class="form-group">
                     <label asp-for="Input.CityID"></label>
                     <select class="form-control" asp-for="Input.CityID">
-                        <option value="2">Odense</option>
+                        @{
+                            //Model.GetCities();
+
+                            foreach (var city in Model.Cities)
+                            {
+                                <option value="@city.CityId">@city.CityName</option>
+                            }
+                        }
                     </select>
                     <span asp-validation-for="Input.CityID" class="text-danger"></span>
                 </div>
