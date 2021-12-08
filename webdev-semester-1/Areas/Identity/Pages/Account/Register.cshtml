@@ -1,0 +1,133 @@
+﻿@page
+@model RegisterModel
+    @{
+        Layout = "_LoginLayout";
+        ViewData["Title"] = "Register";
+    }
+
+    <link href="~/css/register.css" rel="stylesheet" />
+
+
+    <section class="px-2">
+        <div class="container pt-3">
+
+            <div class="d-flex justify-content-between">
+                <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">
+                    <img src="~/img/backArrow.svg" />
+                </a>
+
+                <div>
+                    <a href="#">
+                        <img src="~/img/logo.svg" />
+                    </a>
+                </div>
+            </div>
+
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.FirstName"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.LastName"></label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Phone"></label>
+                    <input asp-for="Input.Phone" class="form-control" />
+                    <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Address"></label>
+                    <input asp-for="Input.Address" class="form-control" />
+                    <span asp-validation-for="Input.Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Zip"></label>
+                    <input asp-for="Input.Zip" class="form-control" />
+                    <span asp-validation-for="Input.Zip" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" asp-for="Input.CityID">
+                        <option value="2">Odense</option>
+                    </select>
+                    <span asp-validation-for="Input.CityID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Username"></label>
+                    <input asp-for="Input.Username" class="form-control" />
+                    <span asp-validation-for="Input.Username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.DriverLicenseNo"></label>
+                    <input asp-for="Input.DriverLicenseNo" class="form-control" />
+                    <span asp-validation-for="Input.DriverLicenseNo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.DriverLicenseExperationDate"></label>
+                    <input asp-for="Input.DriverLicenseExperationDate" class="form-control" />
+                    <span asp-validation-for="Input.DriverLicenseExperationDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label>Førekort</label>
+                    <small id="cardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
+                    <label asp-for="Input.TruckLicenseExperationDate"></label>
+                    <input asp-for="Input.TruckLicenseExperationDate" class="form-control" />
+                    <span asp-validation-for="Input.TruckLicenseExperationDate" class="text-danger"></span>
+                    <label class="btn btnColor my-3">
+                        Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
+                    </label>
+                </div>
+
+                <hr />
+
+                <div class="form-group mt-3">
+                    <label>EU Kvalifikationsbevis</label>
+                    <small id="EUcardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
+                    <label asp-for="Input.EUQualificationExperationDate"></label>
+                    <input asp-for="Input.EUQualificationExperationDate" class="form-control" />
+                    <span asp-validation-for="Input.EUQualificationExperationDate" class="text-danger"></span>
+                    <label class="btn btnColor my-3">
+                        Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Anmod om registrering</button>
+            </form>
+        </div>
+    </section>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <partial name="_RegisterScriptsPartial" />
+    }

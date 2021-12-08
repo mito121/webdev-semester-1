@@ -21,6 +21,7 @@
             </div>
         </div>
 
+        <!--START ON FORM-->
         <form class="mt-4">
             <div class="form-group ">
                 <label for="nameInput">Navn</label>
@@ -39,11 +40,59 @@
                 <input type="text" class="form-control" id="addressInput" />
             </div>
             <div class="form-group ">
-                <label for="lokationInput">Lokation <img src="~/img/infoIcon.svg" /></label>
+                <label for="lokationInput">
+                    Lokation <img data-toggle="modal" data-target="#lokationModal" src="~/img/infoIcon.svg" />
+                    <!--LOKATION INFO POPUP-->
+                    <div class="modal fade" id="lokationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mt-5" role="document">
+                            <!-- INDHOLD -->
+                            <div class="modal-content">
+                                <div class="modal-header justify-content-center">
+                                    Lokation
+                                </div>
+                                
+                                <div class="modal-body text-center text-dark font-weight-normal">
+                                    Din foretrukne <br /> afhentningslokation.
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+
+                </label>
+                <!---->
+
                 <input type="text" class="form-control" id="lokationInput" />
             </div>
-            <div class="form-group ">
-                <label for="tyoeInput">Type <img src="~/img/infoIcon.svg" /></label>
+            <div class="form-group">
+
+                <!--TYPE INFO POPUP-->
+                <label for="typeInput">
+                    Type <img data-toggle="modal" data-target="#typeInput" src="~/img/infoIcon.svg" />
+                    <div class="modal fade" id="typeInput" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mt-5" role="document">
+                            <div class="modal-content">
+                                <!-- INDHOLD -->
+                                <div class="modal-header justify-content-center">
+                                    Type
+                                </div>
+                                <div class="modal-body text-center text-dark font-weight-normal">
+                                    Foretrækker du indenrigs- eller udenlandskørsel?
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <!---->
+
+
                 <input type="text" class="form-control" id="typeInput" />
             </div>
             <div class="form-group ">
@@ -54,6 +103,8 @@
                 <label for="licenseExpireInput">Udløbsdato (Kørekort)</label>
                 <input type="date" class="form-control" id="licenseExpireInput" />
             </div>
+
+          
 
             <div class="form-group mt-5">
                 <label for="driverCardUpload">Førerkort</label>
@@ -66,6 +117,7 @@
                 </label>
 
             </div>
+            <hr />
             <div class="form-group mt-3">
                 <label for="EUCardUpload">EU Kvalifikationsbevis</label>
                 <small id="EUcardHelp" class="form-text text-muted">Indtast udløbsdato af dit EU Kvalifikationsbevis og upload et billede af beviset.</small>
@@ -75,9 +127,32 @@
                     Upload <img class="ml-2" src="~/img/upload.svg" /><input type="file" hidden>
                 </label>
             </div>
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn my-3 vw-100">Anmod om registrering</button>
+
+            <div class="d-flex justify-content-center my-5">
+            <button type="button" class="btn btn-primary vw-100" data-toggle="modal" data-target="#submitModal">
+                Anmod om registrering
+            </button>
             </div>
+
+            <!--SUBMIT POPUP-->
+            <div class="modal fade mt-5" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header justify-content-center font-weight-bold">
+                      <h5>Tak for din anmodning</h5>
+                  </div>
+                  <div class="modal-body text-center">
+                    <p>Din anmodning vil blive <br /> behandlet hurtigst muligt.</p>
+                  </div>
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!---->
+
         </form>
+        <!--END OF FORM-->
     </div>
 </section>

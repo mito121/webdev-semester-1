@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,11 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace webdev_semester_1.Models
 {
-    public partial class AlexAndersenDBContext : DbContext
+    //public partial class AlexAndersenDBContext : DbContext
+    public partial class AlexAndersenDBContext : IdentityDbContext<User, Role, int>
     {
-        public AlexAndersenDBContext()
-        {
-        }
+
 
         public AlexAndersenDBContext(DbContextOptions<AlexAndersenDBContext> options)
             : base(options)
@@ -27,22 +27,19 @@ namespace webdev_semester_1.Models
         public virtual DbSet<DriverLicense> DriverLicenses { get; set; }
         public virtual DbSet<LicenseType> LicenseTypes { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
+        //public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        //public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserAvailability> UserAvailabilities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-7CKEKRSF\\SQLEXPRESS;Database=AlexAndersenDB;Trusted_Connection=True;");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("Relational:Collation", "Danish_Norwegian_CI_AS");
 
             modelBuilder.Entity<Address>(entity =>
@@ -291,9 +288,9 @@ namespace webdev_semester_1.Models
             {
                 entity.ToTable("Role");
 
-                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+                entity.Property(e => e.Id).HasColumnName("RoleID");
 
-                entity.Property(e => e.RoleName)
+                entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
             });
@@ -313,7 +310,7 @@ namespace webdev_semester_1.Models
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.Id).HasColumnName("UserID");
 
                 entity.Property(e => e.AddressId).HasColumnName("AddressID");
 
@@ -327,13 +324,13 @@ namespace webdev_semester_1.Models
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Mail)
+                entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Password)
+                entity.Property(e => e.PasswordHash)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 

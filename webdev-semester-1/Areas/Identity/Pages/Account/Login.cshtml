@@ -1,0 +1,80 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Log in";
+}
+
+<div class="login-bg-wrapper h-full w-full">
+    <div class="login-bg">
+    </div>
+
+    <div class="row mb-1" style="z-index: 10;">
+        <div class="col-12">
+            <div class="d-block">
+                <div class="logo">
+                    <img src="https://www.alex-andersen.dk/cdn/assets/aalogo-square.db4301db.png" alt="Logo" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vertical-spacing mt-2">
+        <div class="row">
+            <div class="col-9 mx-auto">
+
+                <form id="account" method="post" class="mt-5">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Username" class="font-weight-bold"></label>
+                        <input asp-for="Input.Username" class="form-control box-shadow" placeholder="Indtast brugernavn" />
+                        <span asp-validation-for="Input.Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Password" class="font-weight-bold"></label>
+                        <input asp-for="Input.Password" class="form-control box-shadow" placeholder="Indtast adgangskode" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    @*<div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <button type="submit" class="btn signin w-100 mt-3">Log ind</button>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Ikke registreret? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="sign-up-link">Anmod om bruger</a></span>
+                    </div>
+
+                    @*<div class="form-group">
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="sign-up-link">Glemt adgangskode</a>
+                    </div>*@
+                </form>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9 mx-auto">
+                <div class="login-footer">
+                    <a href="#" class="w-100 btn btn-help">Hjælp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

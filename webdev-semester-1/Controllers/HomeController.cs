@@ -23,12 +23,18 @@ namespace webdev_semester_1.Controllers
             return View();
         }
 
+        // GET: Login
         public IActionResult Login()
         {
             return View();
         }
 
-         public IActionResult Register()
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Calendar()
         {
             return View();
         }

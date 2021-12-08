@@ -9,10 +9,25 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/card.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    
 </head>
 <body>
     <header>
-        <nav></nav>
+        <nav class="top-nav">
+            <div class="top-nav-logo">
+                <img src="https://www.alex-andersen.dk/cdn/assets/aalogo-square.db4301db.png" alt="Logo" />
+            </div>
+
+            <div class="top-nav-menu">
+                <ul>
+                    <li><a href="#"><i class="fas fa-user"></i></a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i></a></li>
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+
+        </nav>
     </header>
     <div class="container">
         <main role="main">
@@ -28,7 +43,9 @@
         </div>
 
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/calendar.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
