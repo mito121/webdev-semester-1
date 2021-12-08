@@ -34,10 +34,6 @@ namespace webdev_semester_1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9CDG7Q1\\SQLEXPRESS;Database=AlexAndersenDB;Trusted_Connection=True;MultipleActiveResultSets=True");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
