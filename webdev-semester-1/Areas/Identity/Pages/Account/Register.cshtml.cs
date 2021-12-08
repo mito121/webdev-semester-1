@@ -82,8 +82,12 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "Bopæl")]
+            [Display(Name = "Adresse")]
             public string Address { get; set; }
+
+            [Required]
+            [Display(Name = "Postnr.")]
+            public int Zip { get; set; }
 
             /////////////////
             // Driver License
