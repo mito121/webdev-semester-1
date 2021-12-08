@@ -32,13 +32,16 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            AlexAndersenDBContext db)
+            AlexAndersenDBContext db
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _db = db;
+
+            Cities = _db.Cities;
         }
 
         [BindProperty]
@@ -125,6 +128,11 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             public DateTime EUQualificationExperationDate { get; set; }
         }
 
+        //public void GetCities()
+        //{
+        //    Cities = _db.Cities;
+        //}
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -137,61 +145,58 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+
+                // Add Address
+                var address = new Address
+                {
+                    AddressName = Input.Address,
+                    PostalCode = Input.Zip,
+                    CityId = Input.CityID
+                };
+
+                _db.Addresses.Add(address);
+                _db.SaveChanges(); // Save changes here, to create user with this foreign key
+
                 var user = new User { 
                     UserName = Input.Username,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     DepartmentId = 1,
-                    RoleId = 1
+                    RoleId = 1,
+                    AddressId = address.AddressId
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                // Add driver license
+                var license = new DriverLicense
+                {
+                    DriverId = user.Id,
+                    TypeId = 3
+                };
+
+                _db.DriverLicenses.Add(license);
+
+                // Add driver info
+                var driverInfo = new DriverInfo
+                {
+                    DriverLicenseNo = Input.DriverLicenseNo,
+                    DriverLicenseExperationDate = Input.DriverLicenseExperationDate,
+                    DriverLicenseImage = "driver-license.jpg",
+                    TruckLicenseExperationDate = Input.TruckLicenseExperationDate,
+                    TruckLicenseImage = "truck-license.jpg",
+                    EuqualificationExperationDate = Input.EUQualificationExperationDate,
+                    EuqualificationImage = "eu-qualification.jpg",
+                    TypeId = 3,
+                    UserId = user.Id
+                };
+
+                _db.DriverInfos.Add(driverInfo);
+
                 if (result.Succeeded)
                 {
-
-                    // Add driver license
-                    var license = new DriverLicense
-                    {
-                        DriverId = user.Id,
-                        TypeId = 3
-                    };
-
-                    _db.DriverLicenses.Add(license);
                     _db.SaveChanges();
-
-
-                    // Add driver info
-                    var driverInfo = new DriverInfo
-                    {
-                        DriverLicenseNo = Input.DriverLicenseNo,
-                        DriverLicenseExperationDate = Input.DriverLicenseExperationDate,
-                        DriverLicenseImage = "driver-license.jpg",
-                        TruckLicenseExperationDate = Input.TruckLicenseExperationDate,
-                        TruckLicenseImage = "truck-license.jpg",
-                        EuqualificationExperationDate = Input.EUQualificationExperationDate,
-                        EuqualificationImage = "eu-qualification.jpg",
-                        TypeId = 3,
-                        UserId = user.Id
-                    };
-
-                    _db.DriverInfos.Add(driverInfo);
-                    _db.SaveChanges();
-
-
-                    // Add Address
-                    var address = new Address
-                    {
-                        AddressName = Input.Address,
-                        PostalCode = Input.Zip,
-                        CityId = Input.CityID
-                    };
-
-                    _db.Addresses.Add(address);
-                    _db.SaveChanges();
-
-
-
 
                     _logger.LogInformation("User created a new account with password.");
 
