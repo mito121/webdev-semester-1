@@ -1,4 +1,7 @@
-﻿@{
+﻿@page
+@model User
+
+@{
     Layout = "_LoginLayout";
     ViewData["Title"] = "Din Profil";
     }
@@ -9,8 +12,7 @@
         <div class="header text-center text-white">
             <!--Name need to be pulled from database-->
             <h1>Aron Grace</h1>
-
-            <button type="button" class="mt-5 editProfile">Rediger profil</button>
+           <a class="btn editProfile mt-5" href="~/Identity/Account/Manage" role="button">Rediger Profil</a>
         </div>
     </header>
 
@@ -19,7 +21,7 @@
         <div class="mx-3 d-flex justify-content-between">
             <p class="textCaption">Navn:</p>
             <!--Value needs to be pulled from database-->
-            <p class="textValue text-left">
+            <p class="textValue text-left">Aron Grace</p>
 
         </div>
 
