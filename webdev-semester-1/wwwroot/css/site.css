@@ -29,6 +29,12 @@ hr {
     padding: 0 1rem;
     text-align:left
 }
+.assgnmt-details-icon-fix {
+    position: relative;
+    bottom: -5px;
+    width: 60px;
+    text-align: center;
+}
 
 main {
     padding-top:85px;
@@ -317,7 +323,7 @@ ul.home-nav li a {
 .infoBoxGrid2 {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    align-items: center;
+    align-items: baseline;
 }
 
 .cancelTrip {
