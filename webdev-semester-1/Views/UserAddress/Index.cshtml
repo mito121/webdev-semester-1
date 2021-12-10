@@ -16,7 +16,8 @@
     <header>
         <div class="header text-center text-white">
             <!--Name need to be pulled from database-->
-            <h1>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</h1>
+            @*<h1>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</h1>*@
+            <h1>@Model.FirstName @Model.LastName</h1>
            <a class="btn editProfile mt-5" href="~/Identity/Account/Manage" role="button">Rediger Profil</a>
         </div>
     </header>
@@ -28,7 +29,7 @@
             <p class="textCaption">Navn:</p>
             <!--Value needs to be pulled from database-->
             @*<p class="textValue text-left">@UserManager.GetUserAsync(User).Result.FirstName</p>*@
-            <p class="textValue text-left">@Model.FirstName</p>
+            <p class="textValue text-left">@Model.FirstName @Model.LastName</p>
 
         </div>
 
@@ -37,17 +38,9 @@
         <div class="mx-3 d-flex justify-content-between">
             <p class="textCaption">Adresse:</p>
             <!--Value needs to be pulled from database-->
-            <p class="textValue text-left">Horsensvej 48, <br /> 8722 Hedensted</p>
+            <p class="textValue text-left">@Model.AddressName, <br /> @Model.PostalCode Hedensted</p>
         </div>
-        <hr />
-
-        <div class="mx-3 d-flex justify-content-between">
-            <p class="textCaption">Lokation:</p>
-            <!--Value needs to be pulled from database-->
-            <p class="textValue text-left">
-                Alex Andersen,
-                Odense
-        </div>
+        
         <hr />
 
         <div class="mx-3 d-flex justify-content-between">
