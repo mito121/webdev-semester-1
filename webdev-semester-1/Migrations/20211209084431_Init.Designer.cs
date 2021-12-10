@@ -10,8 +10,8 @@ using webdev_semester_1.Models;
 namespace webdev_semester_1.Migrations
 {
     [DbContext(typeof(AlexAndersenDBContext))]
-    [Migration("20211208101911_Initial")]
-    partial class Initial
+    [Migration("20211209084431_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
