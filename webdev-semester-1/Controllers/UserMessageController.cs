@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace webdev_semester_1.Controllers
         }
 
         // GET Index
+        [Authorize]
         [HttpGet]
         public IActionResult Index()
         {
@@ -50,6 +52,8 @@ namespace webdev_semester_1.Controllers
             return View(Messages);
         }
 
+        // GET: Single message
+        [Authorize]
         public IActionResult Message(int? id)
         {
             if (id == null || id == 0)
