@@ -39,7 +39,7 @@ namespace webdev_semester_1.Controllers
             return View();
         }
 
-        public IActionResult UserProfile()
+        public IActionResult Settings()
         {
             return View();
         }
