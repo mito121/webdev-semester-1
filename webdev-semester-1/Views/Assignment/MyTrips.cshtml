@@ -1,8 +1,14 @@
-﻿@model IEnumerable<Assignment>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Assignment>
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 @{
     ViewData["Title"] = "MyTrips";
     Layout = "~/Views/Shared/_SubpageLayout.cshtml";
+
+    int thisUserId = Int32.Parse(UserManager.GetUserId(User));
 }
 
 <h1 class="mb-4">Mine Ture</h1>
@@ -20,12 +26,11 @@
             <div class="col-12">
                 @foreach (var assignment in Model)
                 {
-                    string cardHeader = $"{assignment.StartTime.Hour}:{assignment.StartTime.Minute} Længde {assignment.Duration}T";
+                    string cardHeader = $"{assignment.StartTime.ToString("HH:mm")} Længde {assignment.Duration}T";
                     string startDateDay = char.ToUpper(assignment.StartDate.ToString("dddd")[0]) + assignment.StartDate.ToString("dddd").Substring(1);
-                    //string startDateMonth = char.ToUpper(assignment.StartDate.ToString("M")[4]) + assignment.StartDate.ToString("M").Substring(0);
                     string wholeDate = assignment.StartDate.ToString("M");
 
-                    if (assignment.StatusId != 4)
+                    if (assignment.StatusId != 4 && assignment.DriverUserId == thisUserId)
                     {
                         <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
                             <div class="tripCardActive">
@@ -51,12 +56,12 @@
             <div class="col-12">
                 @foreach (var assignment in Model)
                 {
-                    string cardHeader = $"{assignment.StartTime.Hour}:{assignment.StartTime.Minute} Længde {assignment.Duration}T";
+                    string cardHeader = $"{assignment.StartTime.ToString("HH:mm")} Længde {assignment.Duration}T";
                     string startDateDay = char.ToUpper(assignment.StartDate.ToString("dddd")[0]) + assignment.StartDate.ToString("dddd").Substring(1);
                     //string startDateMonth = char.ToUpper(assignment.StartDate.ToString("M")[4]) + assignment.StartDate.ToString("M").Substring(0);
                     string wholeDate = assignment.StartDate.ToString("M");
 
-                    if (assignment.StatusId == 4)
+                    if (assignment.StatusId == 4 && assignment.DriverUserId == thisUserId)
                     {
                         <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
                             <div class="tripCardDone">

@@ -7,36 +7,55 @@
 
 <div class="tripCardActive">
     @{
-        string cardHeader = $"Start {Model.StartTime.Hour}:{Model.StartTime.Minute}";
+        string cardHeader = $"Start {Model.StartTime.ToString("HH:mm")}";
     }
     <h2>@cardHeader</h2>
     <p>@Model.CountryCodeStart - @Model.CountryCodeEnd</p>
-    <h3>30 minutter</h3>
-
+    <h3>@Model.Duration timer</h3>
 </div>
+
 <div class="tripDetails infoBox">
     <h5><strong>Information om tur</strong></h5>
-    <p>Denne tur indeholder 5 tons skumfiduser som er let lol</p>
+    <p>@Model.Description</p>
 </div>
+
 <div class="details infoBox">
     <p>Detaljer</p>
-    <div class="break infoBoxGrid2">
-        <p><span class="fas fa-mug-hot fa-2x"></span> Pause længde</p>
-        <p>1 T</p>
-    </div>
-    <hr class="lineSeperator" />
-    <div class="workTime infoBoxGrid2">
-        <p><span class="fas fa-clock fa-2x"></span>  Arbejds tid</p>
 
-        <a>12T 30M</a>
+    <div class="workTime infoBoxGrid2">
+        <p><span class="fas fa-clock fa-2x assgnmt-details-icon-fix"></span> Kørselstid</p>
+
+        <a>@Model.Duration timer</a>
     </div>
+
+    @if (Model.Urgent == true)
+    {
+        <hr class="lineSeperator" />
+        <div class="break infoBoxGrid2">
+            <p><span class="fas fa-exclamation fa-2x assgnmt-details-icon-fix"></span> Hastetur</p>
+            <p>Ja</p>
+        </div>
+    }
+
+    @if (Model.AllDay == true)
+    {
+        <hr class="lineSeperator" />
+        <div class="break infoBoxGrid2">
+            <p><span class="fas fa-calendar-day fa-2x assgnmt-details-icon-fix"></span> Heldagstur</p>
+            <p>Ja</p>
+        </div>
+    }
 </div>
+
+
 <div class="pickupLocation infoBox">
     <p>Lokation</p>
     <p><span class="fas fa-map-marker-alt fa-2x"></span> Denmark</p>
     <p>Alex Andersen transport, Logistikvej 25a, 5250 Odense</p>
     <a href="https://goo.gl/maps/iFDTGi5d8FkSmDR3A" target="_blank">Find lokation</a>
 </div>
+
+
 <div class="contactInfo infoBox">
     <p>Kontakt info</p>
     <div class="phoneNumber ">
@@ -47,10 +66,12 @@
         <p><span class="fas fa-envelope fa-2x"></span> <a href="mailto: abc@example.com">info@alex-andersen.dk</a></p>
     </div>
 </div>
+
+
 <div class="cancelTrip infoBox">
     <button type="button" data-toggle="modal" data-target="#exampleModal">
     Afmeld tur
-</button>
+    </button>
 </div>
 
 <!-- Modal -->
