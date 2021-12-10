@@ -24,14 +24,10 @@ namespace webdev_semester_1.Controllers
             _userManager = userManager;
         }
         [HttpGet]
-        // Set variable for database context
-        
 
         // GET Index
         public IActionResult Index()
         {
-            //IEnumerable<User> userList = _db.Users;
-            //IEnumerable<Address> addressList = _db.Addresses;
             var thisUserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             var UserProfile =

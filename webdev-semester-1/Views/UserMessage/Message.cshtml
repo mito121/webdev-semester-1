@@ -1,0 +1,13 @@
+﻿@model webdev_semester_1.ViewModels.UserMessageVM
+
+@{
+    ViewData["Title"] = "Message";
+}
+
+<h1>Message</h1>
+
+<p class="font-weight-bold">Afsender:</p>
+<p>@Model.FirstName @Model.LastName</p>
+
+<p class="font-weight-bold">Besked:</p>
+<p>@Model.MessageText</p>

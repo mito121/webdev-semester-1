@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<webdev_semester_1.ViewModels.UserMessageVM>
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
+    ViewData["Title"] = "Beskeder";
+}
+
+<style>
+    ul.messages {
+        list-style: none;
+    }
+
+        ul.messages li {
+            margin: 6px 0;
+        }
+
+    .unread {
+        background-color: red;
+    }
+</style>
+
+<h1>Beskeder</h1>
+
+
+@if (Model.Count() > 0)
+{
+<ul class="messages">
+    @foreach (var message in Model)
+    {
+        string unreadClass = "";
+        if (message.Read == false)
+        {
+            unreadClass = "unread";
+        }
+        <li class="@unreadClass">
+            <a asp-action="Message" asp-route-id="@message.MessageId">
+                <div class="message-header">@message.FirstName</div>
+                <div class="message-body">@message.MessageText</div>
+            </a>
+        </li>
+    }
+</ul>
+}
+else
+{
+    <h3>Ingen beskeder.</h3>
+}
+    
