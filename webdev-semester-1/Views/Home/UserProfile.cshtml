@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using webdev_semester_1.ViewModels
+@model webdev_semester_1.ViewModels.UserProfileVM
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Din Profil";
+    }
+
+    <link href="~/css/userProfile.css" rel="stylesheet" />
+
+    <header>
+        <div class="header text-center text-white">
+            <!--Name need to be pulled from database-->
+            <h1>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</h1>
+           <a class="btn editProfile mt-5" href="~/Identity/Account/Manage" role="button">Rediger Profil</a>
+        </div>
+    </header>
+
+
+    <section class="mt-5">
+        <hr />
+        <div class="mx-3 d-flex justify-content-between">
+            <p class="textCaption">Navn:</p>
+            <!--Value needs to be pulled from database-->
+            @*<p class="textValue text-left">@UserManager.GetUserAsync(User).Result.FirstName</p>*@
+            <p class="textValue text-left">@Model.FirstName</p>
+
+        </div>
+
+        <hr />
+
+        <div class="mx-3 d-flex justify-content-between">
+            <p class="textCaption">Adresse:</p>
+            <!--Value needs to be pulled from database-->
+            <p class="textValue text-left">Horsensvej 48, <br /> 8722 Hedensted</p>
+        </div>
+        <hr />
+
+        <div class="mx-3 d-flex justify-content-between">
+            <p class="textCaption">Lokation:</p>
+            <!--Value needs to be pulled from database-->
+            <p class="textValue text-left">
+                Alex Andersen,
+                Odense
+        </div>
+        <hr />
+
+        <div class="mx-3 d-flex justify-content-between">
+            <p class="textCaption">Type:</p>
+            <!--Value needs to be pulled from database-->
+            <p class="textValue text-left">National & International
+        </div>
+        <hr />
+
+
+        <div class="driverLicenseType text-center my-5">
+            <h5 class="mb-4">Kørekort Oplysninger</h5>
+
+            <div class="d-flex flex-wrap justify-content-center diverLicenseIcons">
+                <img src="~/img/am.svg" />
+                <img src="~/img/b.svg" />
+                <img src="~/img/c1.svg" />
+                <img src="~/img/c1e.svg" />
+                <img src="~/img/c.svg" />
+                <img src="~/img/ce.svg" />
+            </div>
+
+        </div>
+
+
+       <div>
+          
+
+       </div>
+
+
+    </section>

@@ -1,0 +1,64 @@
+﻿* {
+    font-family: Raleway,Arial,Helvetica,sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h5 {
+    color: #009E58;
+    font-weight: bold;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+    header:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #009E58;
+        border-radius: 0 0 50% 50%/0 0 100% 100%;
+        transform: scaleX(3);
+    }
+
+.header {
+    z-index: 1;
+}
+
+.editProfile {
+    background-color: transparent;
+    border: white;
+    border-style: solid;
+    border-radius: 5px;
+    width: 180px;
+    height: 45px;
+    color: white;
+    font-weight: bold;
+}
+
+.textCaption {
+    font-size: 20px;
+    font-weight: bold;
+    color: #009E58;
+}
+
+.textValue {
+    font-size: 20px;
+}
+
+.diverLicenseIcons img {
+    margin: 10px 5px;
+}
