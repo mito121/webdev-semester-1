@@ -70,7 +70,6 @@ namespace webdev_semester_1.Controllers
                          where message.MessageId == id
                          select new UserMessageVM
                          {
-                             UserID = user.Id,
                              FirstName = user.FirstName,
                              LastName = user.LastName,
 
