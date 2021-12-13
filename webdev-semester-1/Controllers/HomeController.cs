@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace webdev_semester_1.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -34,11 +36,13 @@ namespace webdev_semester_1.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Calendar()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Settings()
         {
             return View();

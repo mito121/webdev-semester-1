@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,15 +24,12 @@ namespace webdev_semester_1.Controllers
             _db = db;
             _userManager = userManager;
         }
-        [HttpGet]
-        // Set variable for database context
-        
 
         // GET Index
+        [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
-            //IEnumerable<User> userList = _db.Users;
-            //IEnumerable<Address> addressList = _db.Addresses;
             var thisUserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             var UserProfile =
