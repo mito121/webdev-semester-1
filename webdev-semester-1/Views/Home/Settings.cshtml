@@ -34,6 +34,12 @@
         background-color: #00904A;
         opacity: 1;
     }
+
+    .logout-btn {
+        margin: 0 auto;
+        font-size: 1.3rem;
+        color: #00904A;
+    }
 </style>
 
 <div class="row remove-gutters mb-4">
@@ -75,6 +81,6 @@
     <hr class="seperator"/>
     <div>
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <button id="logout" type="submit" class="nav-link btn btn-link logout-btn">Logout</button>
         </form>
     </div>
