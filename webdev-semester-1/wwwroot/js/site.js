@@ -1,9 +1,23 @@
 if (document.querySelector('#calendar1')) {
+  
+    let display = "none";
+  
     function selectDate(date) {
         $('#calendar1').updateCalendarOptions({
             date: date
         });
-        console.log(calendar.getSelectedDate());
+      
+        console.log(calendar1.getSelectedDate());
+
+        if (display == "none") {
+            display = "block";
+            $(".popUpEditDay").css("display", "flex")
+        } else {
+            display = "none";
+            $('.popUpEditDay').css("display", "none")
+        }
+
+        $('#edit-overlay').css("display", display);
     }
 }
 
@@ -19,16 +33,31 @@ if (document.getElementById("sideNav")) {
     document.getElementById("sideNav").addEventListener("click", openNav);
 }
 
+function calendar2DontSelectDate() {
+    console.log('hej');
+}
+ 
 
-var defaultConfig = {
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+today = mm + '/' + dd + '/' + yyyy;
+
+var calendar1Config = {
     weekDayLength: 1,
-    date: '08/05/2021',
+    date: today,
     onClickDate: selectDate,
     showYearDropdown: true,
     startOnMonday: true,
 };
 
-if (document.getElementById("#calendar1")) {
-    var calendar = $('#calendar1').calendar(defaultConfig);
-    console.log(calendar.getSelectedDate());
+var calendar2Config = {
+    showAvailabilityButton: false,
+    onClickDate: calendar2DontSelectDate
 }
+
+var calendar1 = $('#calendar1').calendar(calendar1Config);
+/*var calendar2 = $('#calendar2').calendar(calendar2Config);*/
+console.log(calendar1.getSelectedDate());

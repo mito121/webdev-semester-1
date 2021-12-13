@@ -1,9 +1,156 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 <link href="~/css/style.css" rel="stylesheet" />
 <link href="~/css/theme.css" rel="stylesheet" />
 
+<style>
+    :root {
+        --primary-color: #00904A;
+    }
+
+    #edit-overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100%;
+        background-color: #e5e5e5;
+        padding-top:100px;
+    }
+    .popUpEditDay {
+        /*display: flex;*/
+        display:none;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+        height: 52vh;
+        width: 340px;
+        margin: 1rem;
+        background-color: white;
+        position: relative;
+    }
+    .popUpEditDay p{
+        text-align: left; 
+        padding: 25px 0px 0px 30px; 
+    }
+    .popUpEditDay strong {
+         color: var(--primary-color);
+    }
+
+    .changeAvailabilityTime {
+         font-size: 20px; 
+         color: var(--primary-color); 
+    }
+
+    .popUpEditDayDate {
+        color: var(--primary-color);
+        
+    }
+    .popUpEditDayDate2 {
+        color: var(--primary-color);
+        margin-bottom: 2rem; 
+    }
+
+    .closeOverlay {
+        font-size: 2.5rem;
+        font-weight: 800; 
+        color: black; 
+        top: -5px; 
+        right: 16px; 
+        position: absolute; 
+    }
+    .closeOverlay:active {
+        text-decoration: none;
+    }
+    .form-row {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        padding: 0px 30px;
+        margin-bottom: 2rem; 
+    }
+    .form-group{
+        text-align: left; 
+    }
+    .popUpChooseDays{
+        color:var(--primary-color);
+        margin-bottom: -0.5rem; 
+        font-size: 18px; 
+    }
+
+    .popUpCalendar2 {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 10px 20px 10px;
+        
+        width: 340px;
+        margin: 1rem;
+        background-color: white;
+        position: relative;
+    }
+    
+    .saveButton{
+        padding: 0.5rem 2.5rem; 
+    }
+  
+</style>
+
 <div id="calendar1"></div>
+
+<div id="edit-overlay">
+
+
+    <div class="popUpEditDay">
+        <a class="closeOverlay" asp-area="" asp-controller="Home" asp-action="Calendar">&times;</a>
+        <h4 class="popUpEditDayDate">Dato skal ind her</h4> 
+        <p><strong>Status:</strong> Ledig hele dagen </p>
+        <div class="changeAvailabilityTime">
+            <p><strong>Ændre dit tidsrum</strong></p>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputFrom">Fra</label>
+                    <input type="time" class="form-control" id="inputFrom">
+                </div>
+                <div class="form-group col">
+                    <label for="inputTo">Til</label>
+                    <input type="time" class="form-control" id="inputTo">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-danger form-control  btn-block" onclick="confirm('Er du sikker på at du vil afmelde din rådighed?')">Afmeld</button>
+                    </div>
+                    <div class="col">
+                        <button id="btnSubmit" class="btn btn-success form-control btn-block" type="submit">Gem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUpCalendar2">
+        <a class="closeOverlay" asp-area="" asp-controller="Home" asp-action="Calendar">&times;</a>
+        <h4 class="popUpEditDayDate2">Vælg periode eller datoer</h4>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label for="inputFrom">Fra</label>
+                <input type="date" class="form-control" id="inputFrom">
+            </div>
+            <div class="form-group col-6">
+                <label for="inputTo">Til</label>
+                <input type="date" class="form-control" id="inputTo">
+            </div>
+        </div>
+        @*<p class="popUpChooseDays"><strong>Vælg dage:</strong></p>*@
+
+        <div id="calendar2"></div>
+
+        <div class="col">
+            <button id="btnSubmit" class="btn btn-success btn-lg saveButton" type="submit">Gem</button>
+        </div>
+    </div>
+</div>
+
