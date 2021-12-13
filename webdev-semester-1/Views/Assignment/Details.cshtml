@@ -2,8 +2,90 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "_SubpageLayout";
 }
 
+<div class="tripCardActive">
+    @{
+        string cardHeader = $"Start {Model.StartTime.ToString("HH:mm")}";
+    }
+    <h2>@cardHeader</h2>
+    <p>@Model.CountryCodeStart - @Model.CountryCodeEnd</p>
+    <h3>@Model.Duration timer</h3>
+</div>
 
-<div>Hej! @Model.AssignmentId</div>
+<div class="tripDetails infoBox">
+    <h5><strong>Information om tur</strong></h5>
+    <p>@Model.Description</p>
+</div>
+
+<div class="details infoBox">
+    <p>Detaljer</p>
+
+    <div class="workTime infoBoxGrid2">
+        <p><span class="fas fa-clock fa-2x assgnmt-details-icon-fix"></span> Kørselstid</p>
+
+        <a>@Model.Duration timer</a>
+    </div>
+
+    @if (Model.Urgent == true)
+    {
+        <hr class="lineSeperator" />
+        <div class="break infoBoxGrid2">
+            <p><span class="fas fa-exclamation fa-2x assgnmt-details-icon-fix"></span> Hastetur</p>
+            <p>Ja</p>
+        </div>
+    }
+
+    @if (Model.AllDay == true)
+    {
+        <hr class="lineSeperator" />
+        <div class="break infoBoxGrid2">
+            <p><span class="fas fa-calendar-day fa-2x assgnmt-details-icon-fix"></span> Heldagstur</p>
+            <p>Ja</p>
+        </div>
+    }
+</div>
+
+
+<div class="pickupLocation infoBox">
+    <p>Lokation</p>
+    <p><span class="fas fa-map-marker-alt fa-2x"></span> Denmark</p>
+    <p>Alex Andersen transport, Logistikvej 25a, 5250 Odense</p>
+    <a href="https://goo.gl/maps/iFDTGi5d8FkSmDR3A" target="_blank">Find lokation</a>
+</div>
+
+
+<div class="contactInfo infoBox">
+    <p>Kontakt info</p>
+    <div class="phoneNumber ">
+        <p><span class="fas fa-phone fa-2x"></span><a href="tel:+4566188197">+45 66 18 81 97</a></p>
+    </div>
+    <hr class="lineSeperator" />
+    <div class="contactMail ">
+        <p><span class="fas fa-envelope fa-2x"></span> <a href="mailto: abc@example.com">info@alex-andersen.dk</a></p>
+    </div>
+</div>
+
+
+<div class="cancelTrip infoBox">
+    <button type="button" data-toggle="modal" data-target="#exampleModal">
+    Afmeld tur
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body flex-colum text-center">
+                <h2>Afmeld tur</h2>
+                <p>For at afmelde din tur skal du ring for at afmelde turen på telefon nr</p>
+                <a href="tel:+4566188197">+45 66 18 81 97</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

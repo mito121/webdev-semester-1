@@ -10,8 +10,8 @@ using webdev_semester_1.Models;
 namespace webdev_semester_1.Migrations
 {
     [DbContext(typeof(AlexAndersenDBContext))]
-    [Migration("20211203103011_dbinit")]
-    partial class dbinit
+    [Migration("20211213104735_initLiveDb")]
+    partial class initLiveDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
