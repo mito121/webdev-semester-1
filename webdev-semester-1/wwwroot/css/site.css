@@ -24,6 +24,10 @@ hr {
     border-radius: 10px;
     width: 99%
 }
+
+hr.custom-m-6{
+    margin: 6px 0;
+}
 .fas{
     padding: 0 1rem;
     text-align:left
@@ -36,7 +40,8 @@ hr {
 }
 
 main {
-    padding-top:85px;
+    padding-top: 85px;
+    min-height: calc(100vh - 61px);
 }
 
 /* Bootstrap edits start*/
@@ -87,6 +92,7 @@ main {
     overflow-x: hidden;
     padding-top: 60px;
     transition: 250ms;
+    box-shadow: none;
 }
 
 .sidenav a {
@@ -96,6 +102,10 @@ main {
     color: #000;
     display: block;
     transition: 0.3s;
+}
+
+.nav-link {
+    color: inherit;
 }
 
 .sidenav a:hover {
@@ -207,7 +217,7 @@ ul.home-nav {
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    width: 225px;
+    width: 245px;
 }
 
 ul.home-nav li {
@@ -222,13 +232,13 @@ ul.home-nav li a {
     padding: 9px 0;
     border-radius: 5px;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 .newsfeed {
     background-color: #00904A;
     color:#fff;
-    padding:45px 15px;
+    padding:30px 15px;
 }
 
 

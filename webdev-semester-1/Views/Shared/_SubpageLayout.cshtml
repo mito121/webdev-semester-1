@@ -9,21 +9,20 @@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="~/css/card.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/settings.css"/>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/settings.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
     <link href="~/css/theme.css" rel="stylesheet" />
     <link href="~/css/calendar.css" rel="stylesheet" />
-
 </head>
 <body>
     <header>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Hjem</a>
-            <a href="#">Mine ture</a>
-            <a href="#">Rådighedskalender</a>
-            <a href="#">Hjælp</a>
+            <a asp-controller="Home" asp-action="Index">Hjem</a>
+            <a asp-controller="Assignment" asp-action="MyTrips">Mine ture</a>
+            <a asp-controller="Home" asp-action="Calendar">Rådighedskalender</a>
+            <a asp-controller="UserMessage" asp-action="Index">Beskeder</a>
         </div>
         <nav class="top-nav">
             <a href="javascript: history.go(-1)"><i class="fas fa-arrow-left fa-2x"></i></a>
