@@ -307,9 +307,9 @@ ul.home-nav li a {
         text-decoration: underline;
         color: var(--primary-color);
 }
-    .infoBox a,p,span {
+    .infoBox a, .infoBox p, .infoBox span {
         font-size: 1rem;
-        text-align:left;
+        text-align: left;
     }
 
 /*.infoBoxGrid3 {

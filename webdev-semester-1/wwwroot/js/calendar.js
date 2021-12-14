@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
   var todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0);
 
@@ -6,8 +6,8 @@
   var defaults = {
     date: null,
     weekDayLength: 1,
-    prevButton: "Prev",
-    nextButton: "Next",
+    prevButton: "<",
+    nextButton: ">",
     monthYearSeparator: " ",
     onClickDate: function (date) {},
     onChangeMonth: function (date) {},
@@ -21,10 +21,10 @@
     showThreeMonthsInARow: true,
     enableMonthChange: true,
     enableYearView: true,
-    showTodayButton: true,
+    showAvailabilityButton: true,
     highlightSelectedWeekday: true,
     highlightSelectedWeek: true,
-    todayButtonContent: "Today",
+    availabilityButtonContent: "Rediger rådighed",
     showYearDropdown: false,
     min: null,
     max: null,
@@ -37,38 +37,38 @@
     yearView = false;
 
   var monthMap = {
-    1: "january",
-    2: "february",
-    3: "march",
+    1: "januar",
+    2: "februar",
+    3: "marts",
     4: "april",
-    5: "may",
-    6: "june",
-    7: "july",
+    5: "maj",
+    6: "juni",
+    7: "juli",
     8: "august",
     9: "september",
-    10: "october",
+    10: "oktober",
     11: "november",
     12: "december",
   };
 
   var dayMap = {
-    0: "sunday",
-    1: "monday",
-    2: "tuesday",
-    3: "wednesday",
-    4: "thursday",
-    5: "friday",
-    6: "saturday",
+    0: "søndag",
+    1: "mandag",
+    2: "tirsdag",
+    3: "onsdag",
+    4: "torsdag",
+    5: "fredag",
+    6: "lørdag",
   };
 
   var alternateDayMap = {
-    1: "monday",
-    2: "tuesday",
-    3: "wednesday",
-    4: "thursday",
-    5: "friday",
-    6: "saturday",
-    7: "sunday",
+    1: "mandag",
+    2: "tirsdag",
+    3: "onsdag",
+    4: "torsdag",
+    5: "fredag",
+    6: "lørdag",
+    7: "søndag",
   };
 
   function getFirstDayOfMonth(currentDate) {
@@ -175,12 +175,12 @@
     return monthData;
   }
 
-  function generateTodayButton() {
+  function generateAvailabilityButton() {
     return (
       "" +
       '<div class="special-buttons">' +
-      '<button class="today-button">' +
-      settings.todayButtonContent +
+      '<button class="availability-button">' +
+      settings.availabilityButtonContent +
       "</button>" +
       "</div>"
     );
@@ -379,8 +379,8 @@
       calendarDump += "</div>";
     }
 
-    if (settings.showTodayButton) {
-      calendarDump += generateTodayButton();
+    if (settings.showAvailabilityButton) {
+      calendarDump += generateAvailabilityButton();
     }
 
     calendarDump += "</div>";
@@ -564,17 +564,22 @@
       );
     }
 
-    if (settings.showTodayButton) {
-      el.off("click", ".today-button").on(
+      let display = "none";
+
+    if (settings.showAvailabilityButton) {
+      el.off("click", ".availability-button").on(
         "click",
-        ".today-button",
-        function (e) {
-          currentDate = todayDate;
-          selectedDate = todayDate;
-          settings.onClickToday(todayDate);
-          settings.onClickDate(todayDate);
-          yearView = false;
-          renderToDom(currentDate);
+        ".availability-button",
+          function (e) {
+              if (display == "none") {
+                  display = "block";
+                  $('.popUpCalendar2').css("display", "block")
+              } else {
+                  display = "none";
+                  $('..popUpCalendar2').css("display", "none")
+              }
+
+              $('#edit-overlay').css("display", display);
         }
       );
     }

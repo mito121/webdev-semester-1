@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,13 @@ namespace webdev_semester_1.Controllers
             _db = db;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public  IActionResult MyTrips()
         {
             //List<Assignment> assignments = new List<Assignment>();
@@ -29,6 +32,7 @@ namespace webdev_semester_1.Controllers
             return View(objList);
         }
 
+        [Authorize]
         public IActionResult Details(int? id)
         {
             if (id == null || id == 0)
