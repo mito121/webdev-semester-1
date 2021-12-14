@@ -3,45 +3,51 @@
     ViewData["Title"] = "Settings";
 }
 
-<div class="row remove-gutters mb-4">
-    <div class="col-3 text-center">
-            <span class="fas fa-bell settings-icon"></span>
-    </div>
-    <div class="col-7">
-        <div class="settings-text ">Notificationer</div>
-    </div>
-    <div class="form-check form-switch col-2">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-    </div>
-</div>
-<div class="row mb-4">
-    <a href="#" class="d-flex align-items-center">
-        <div class="col-3 text-center">
-                <i class="fas fa-question settings-icon"></i>
-        </div>
-        <div class="col-7 settings-text">Hjælp og Feedback</div>
-        <div class="col-2"></div>
-    </a>
-</div>
-    <div class="row mb-4">
-        <a href="#" class="d-flex align-items-center">
-            <div class="col-3 text-center">
-                <i class="fas fa-exclamation settings-icon"></i>
-            </div>
-            <div class="col-9 settings-text">Anmeld Fejl</div>
-        </a>
-    </div>
-    <div class="row">
-        <a href="#" class="d-flex align-items-center">
-            <div class="col-3 text-center text-center">
-                <i class="fas fa-info-circle settings-icon"></i>
-            </div>
-            <div class="col-9 settings-text">Om</div>
-        </a>
-    </div>
-    <hr class="seperator"/>
+<div class="d-flex flex-column h-full justify-content-between pt-4">
     <div>
+        <div class="row remove-gutters mb-4">
+            <div class="col-3 text-center">
+                <span class="fas fa-bell settings-icon"></span>
+            </div>
+            <div class="col-7">
+                <div class="settings-text ">Notificationer</div>
+            </div>
+            <div class="form-check form-switch col-2">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <a href="#" class="d-flex align-items-center">
+                <div class="col-3 text-center">
+                    <i class="fas fa-question settings-icon"></i>
+                </div>
+                <div class="col-7 settings-text">Hjælp og Feedback</div>
+                <div class="col-2"></div>
+            </a>
+        </div>
+        <div class="row mb-4">
+            <a href="#" class="d-flex align-items-center">
+                <div class="col-3 text-center">
+                    <i class="fas fa-exclamation settings-icon"></i>
+                </div>
+                <div class="col-9 settings-text">Anmeld Fejl</div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="#" class="d-flex align-items-center">
+                <div class="col-3 text-center text-center">
+                    <i class="fas fa-info-circle settings-icon"></i>
+                </div>
+                <div class="col-9 settings-text">Om</div>
+            </a>
+        </div>
+
+    </div>
+    
+    <div class="mb-2">
+        <hr class="seperator custom-m-6" />
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link logout-btn">Logout</button>
+            <button id="logout" type="submit" class="nav-link btn btn-link logout-btn">Log ud</button>
         </form>
     </div>
+</div>
