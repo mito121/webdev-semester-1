@@ -34,17 +34,18 @@ namespace webdev_semester_1.Controllers
 
             var UserProfile =
                         (from user in _db.Users
-                        join address in _db.Addresses
-                        on user.AddressId equals address.AddressId
-                        where user.Id == thisUserId
-                         select new UserProfileVM {
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            AddressId = address.AddressId,
-                            AddressName = address.AddressName,
-                            CityId = address.CityId,
-                            PostalCode = address.PostalCode
-                        }).ToList();
+                         join address in _db.Addresses
+                         on user.AddressId equals address.AddressId
+                         where user.Id == thisUserId
+                         select new UserProfileVM
+                         {
+                             FirstName = user.FirstName,
+                             LastName = user.LastName,
+                             AddressId = address.AddressId,
+                             AddressName = address.AddressName,
+                             CityId = address.CityId,
+                             PostalCode = address.PostalCode
+                         }).ToList();
 
             var theUser = UserProfile[0];
 
