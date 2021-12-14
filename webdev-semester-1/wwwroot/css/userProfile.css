@@ -2,6 +2,13 @@
     font-family: Raleway,Arial,Helvetica,sans-serif;
 }
 
+.tester{
+    min-width: 28px;
+    min-height: 32px;
+    z-index:1;
+    position: absolute;
+}
+
 body {
     margin: 0;
     padding: 0;

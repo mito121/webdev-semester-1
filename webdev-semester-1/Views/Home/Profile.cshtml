@@ -13,7 +13,17 @@
 
     <link href="~/css/userProfile.css" rel="stylesheet" />
 
+    <div class="tester mt-3 ml-3">
+            <a href="index">
+                <img src="~/img/backArrow.svg" />
+            </a>
+        </div>
+    
     <header>
+
+        
+
+
         <div class="header text-center text-white">
             <!--Name need to be pulled from database-->
             <h1>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</h1>
