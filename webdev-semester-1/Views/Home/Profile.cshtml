@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using webdev_semester_1.ViewModels
-@model webdev_semester_1.ViewModels.UserProfileVM
+@model UserProfileVM
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
@@ -28,7 +28,7 @@
             <p class="textCaption">Navn:</p>
             <!--Value needs to be pulled from database-->
             @*<p class="textValue text-left">@UserManager.GetUserAsync(User).Result.FirstName</p>*@
-            <p class="textValue text-left">@Model.FirstName</p>
+            <p class="textValue text-left">@Model.FirstName @Model.LastName</p>
 
         </div>
 
