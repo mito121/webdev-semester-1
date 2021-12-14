@@ -11,10 +11,10 @@ if (document.querySelector('#calendar1')) {
 
         if (display == "none") {
             display = "block";
-            $(".popUpEditDay").css("display", "flex")
+            $(".popUpEditDay").css("display", display)
         } else {
             display = "none";
-            $('.popUpEditDay').css("display", "none")
+            $('.popUpEditDay').css("display", display)
         }
 
         $('#edit-overlay').css("display", display);
