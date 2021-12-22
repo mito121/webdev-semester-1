@@ -50,7 +50,7 @@ namespace webdev_semester_1
             }).AddEntityFrameworkStores<AlexAndersenDBContext>().AddDefaultTokenProviders().AddDefaultUI();
 
 
-            services.AddDbContext<AlexAndersenDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("webdev_semester_1Context")));
+            services.AddDbContext<AlexAndersenDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
         }

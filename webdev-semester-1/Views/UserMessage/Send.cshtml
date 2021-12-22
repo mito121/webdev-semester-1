@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model webdev_semester_1.ViewModels.SendMessageVM
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Send";
+    int thisUserId = Int32.Parse(UserManager.GetUserId(User));
+}
+
+<h1>Send besked</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Send" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea asp-for="Message" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecieverUserId" class="control-label"></label>
+
+                @if (ViewBag.Users != null)
+                {
+                    <select asp-for="RecieverUserId" class="form-control">
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.Id">@user.FirstName @user.LastName (@user.UserName)</option>
+                        }
+                    </select>
+                }
+            </div>
+
+            <input type="hidden" asp-for="SenderUserId" value="@thisUserId" />
+
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to messages</a>
+</div>
+

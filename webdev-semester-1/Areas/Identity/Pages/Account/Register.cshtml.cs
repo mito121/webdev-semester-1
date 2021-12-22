@@ -147,7 +147,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
             {
 
                 // Add Address
-                var address = new Address
+                Address address = new Address
                 {
                     AddressName = Input.Address,
                     PostalCode = Input.Zip,
@@ -157,7 +157,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                 _db.Addresses.Add(address);
                 _db.SaveChanges(); // Save changes here, to create user with this foreign key
 
-                var user = new User { 
+                User user = new User { 
                     UserName = Input.Username,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
@@ -170,7 +170,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 // Add driver license
-                var license = new DriverLicense
+                DriverLicense license = new DriverLicense
                 {
                     DriverId = user.Id,
                     TypeId = 3
@@ -179,7 +179,7 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                 _db.DriverLicenses.Add(license);
 
                 // Add driver info
-                var driverInfo = new DriverInfo
+                DriverInfo driverInfo = new DriverInfo
                 {
                     DriverLicenseNo = Input.DriverLicenseNo,
                     DriverLicenseExperationDate = Input.DriverLicenseExperationDate,
@@ -221,6 +221,15 @@ namespace webdev_semester_1.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+                else // If user failed to be created, roll back changes to relational entities
+                {
+                    _db.Addresses.Remove(address);
+                    _db.DriverLicenses.Remove(license);
+                    _db.DriverInfos.Remove(driverInfo);
+                    _db.SaveChanges();
+                }
+
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
