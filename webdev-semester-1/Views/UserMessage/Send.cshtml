@@ -6,6 +6,7 @@
 
 @{
     ViewData["Title"] = "Send";
+    Layout = "_SubSubpageLayout";
     int thisUserId = Int32.Parse(UserManager.GetUserId(User));
 }
 
@@ -43,9 +44,5 @@
 
 
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to messages</a>
 </div>
 

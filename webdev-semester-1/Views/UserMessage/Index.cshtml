@@ -13,46 +13,68 @@
         list-style: none;
     }
 
-    ul.messages li {
-        margin: 6px 0;
-        background-color: forestgreen;
+        ul.messages li {
+            margin: 6px 0;
+            display: flex;
+            justify-content: space-between;
+            background-color: #FFF;
+            padding: 2px 4px;
 
-        display: flex;
-        justify-content: space-between;
-    }
+            border: 2px solid #CCC;
+            border-radius: 5px;
+        }
 
     .unread {
-        background-color: red !important;
+        /*background-color: #DDD !important;*/
+        border: 2px solid #00904A !important;
     }
+
+        .unread h4, .unread p {
+            /*background-color: red !important;*/
+            font-weight: bold;
+        }
 </style>
 
-<h1>Beskeder</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="m-0">Beskeder</h1>
+    <a asp-action="Send" class="btn btn-primary"><i class="fas fa-envelope p-0"></i> Ny besked</a>
+</div>
 
-<a asp-action="Send">Send besked</a>
+
+@if (ViewBag.Result == true)
+{
+    <div class="alert alert-success" role="alert">
+        Besked sendt!
+    </div>
+}
 
 @if (Model.Count() > 0)
 {
-<ul class="messages">
-    @foreach (var message in Model)
-    {
-        string unreadClass = "";
-        if (message.Read == false)
+    <ul class="messages">
+        @foreach (var message in Model)
         {
-            unreadClass = "unread";
-        }
-    <li class="@unreadClass">
-        <a asp-action="Message" asp-route-id="@message.MessageId">
-            <div class="message-header">@message.FirstName</div>
-            <div class="message-body">@message.MessageText</div>
-        </a>
+            string unread = message.Read == false ? "unread" : "";
 
-        <form asp-action="Delete" method="POST">
-            <input type="hidden" name="id" value="@message.MessageId" />
-            <button type="submit">Slet</button>
-        </form>
-    </li>
-    }
-</ul>
+            int maxMessageLength = 20;
+            string truncatedMessage =
+                message.MessageText.Length <= maxMessageLength ? 
+                message.MessageText : 
+                message.MessageText.Substring(0, maxMessageLength).Insert(maxMessageLength, " ...");
+
+
+            <li class="d-block @unread">
+                <a asp-action="Message" asp-route-id="@message.MessageId">
+                    <div class="message-header">
+                        <h4 class="mb-0">@message.FirstName @message.LastName</h4>
+                    </div>
+
+                    <div class="message-body">
+                        <p class="m-0 p-0">@truncatedMessage</p>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
 }
 else
 {

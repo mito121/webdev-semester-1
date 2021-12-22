@@ -26,6 +26,15 @@ namespace webdev_semester_1.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            // Check if user has any unread messages
+            var thisUserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var messageResult = (from message in _db.Messages
+                                 where message.ReceiverUserId == thisUserId && message.Read == false
+                                 select new Message { }
+                                     ).ToList().Count();
+
+            ViewBag.UnreadMessages = messageResult;
+
             return View();
         }
 
@@ -76,7 +85,7 @@ namespace webdev_semester_1.Controllers
             var theUser = UserProfile[0];
 
             return View(theUser);
-           
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

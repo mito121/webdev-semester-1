@@ -1,6 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home";
+
+    string unreadMessages;
+
+    if (ViewBag.UnreadMessages > 0)
+    {
+        unreadMessages = "";
+    }
+    else
+    {
+        unreadMessages = "d-none";
+    }
+
+
 }
+
+<style>
+    .unread-messages {
+        position: absolute;
+        top: -5px;
+        right: 45px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        color: #fff;
+    }
+
+        .unread-messages span {
+            position: relative;
+            top: 1px;
+        }
+</style>
 
 <div class="h-full d-flex flex-column justify-content-between">
     <div class="row">
@@ -9,7 +39,11 @@
                 <li><a href="#">Ledige ture</a></li>
                 <li><a asp-area="" asp-controller="Assignment" asp-action="MyTrips">Mine ture</a></li>
                 <li><a asp-controller="Home" asp-action="Calendar">Rådighedskalender</a></li>
-                <li><a asp-controller="UserMessage" asp-action="Index">Beskeder</a></li>
+
+                <li class="position-relative">
+                    <div class="unread-messages bg-danger @unreadMessages"><span>@ViewBag.UnreadMessages</span></div>
+                    <a asp-controller="UserMessage" asp-action="Index">Beskeder</a>
+                </li>
             </ul>
         </div>
     </div>

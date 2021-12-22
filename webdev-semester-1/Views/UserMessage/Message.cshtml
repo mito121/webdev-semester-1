@@ -2,13 +2,16 @@
 
 @{
     ViewData["Title"] = "Message";
-    Layout = "_SubpageLayout";
+    Layout = "_SubSubpageLayout";
 }
 
-<h1>Message</h1>
-
-<p class="font-weight-bold">Afsender:</p>
+<p class="text-black-50">Fra:</p>
 <p>@Model.FirstName @Model.LastName</p>
 
-<p class="font-weight-bold">Besked:</p>
+<p class="text-black-50">Besked:</p>
 <p>@Model.MessageText</p>
+
+<form asp-action="Delete" method="POST" class="mt-4" style="text-align: right;">
+    <input type="hidden" name="id" value="@Model.MessageId" />
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Er du sikker på du vil slette denne besked?');">Slet</button>
+</form>

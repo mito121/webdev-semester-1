@@ -28,9 +28,11 @@ namespace webdev_semester_1.Controllers
 
         // GET Index
         [Authorize]
-        [HttpGet]
         public IActionResult Index()
         {
+            // Get result if user has sent a message
+            ViewBag.Result = TempData["result"];
+
             var thisUserId = Int32.Parse(_userManager.GetUserId(User));
 
             var Messages =
@@ -66,7 +68,7 @@ namespace webdev_semester_1.Controllers
 
             // Update message read-status to true if not already true
             Message dbMessage = _db.Messages.Find(id);
-            if(dbMessage.Read == false)
+            if (dbMessage.Read == false)
             {
                 dbMessage.Read = true;
             }
@@ -111,7 +113,7 @@ namespace webdev_semester_1.Controllers
         [HttpPost]
         public async Task<IActionResult> SendAsync(SendMessageVM thisMessage)
         {
-            if(thisMessage == null)
+            if (thisMessage == null)
             {
                 return NotFound();
             }
@@ -127,9 +129,10 @@ namespace webdev_semester_1.Controllers
 
             int result = await _db.SaveChangesAsync();
 
-            if(result != 0)
+            if (result != 0)
             {
-               return RedirectToAction("Index");
+                TempData["result"] = true;
+                return RedirectToAction("Index");
             }
 
             // Something failed
