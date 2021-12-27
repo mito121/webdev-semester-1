@@ -31,7 +31,8 @@
                     string startDateDay = char.ToUpper(assignment.StartDate.ToString("dddd")[0]) + assignment.StartDate.ToString("dddd").Substring(1);
                     string wholeDate = assignment.StartDate.ToString("M");
 
-                    if (assignment.StatusId != 4 && assignment.DriverUserId == thisUserId)
+                    //if (assignment.StatusId != 4 && assignment.DriverUserId == thisUserId)
+                    if (assignment.StatusId != 4)
                     {
                         <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
                             <div class="tripCardActive">
@@ -62,7 +63,8 @@
                     //string startDateMonth = char.ToUpper(assignment.StartDate.ToString("M")[4]) + assignment.StartDate.ToString("M").Substring(0);
                     string wholeDate = assignment.StartDate.ToString("M");
 
-                    if (assignment.StatusId == 4 && assignment.DriverUserId == thisUserId)
+                    //if (assignment.StatusId == 4 && assignment.DriverUserId == thisUserId)
+                    if (assignment.StatusId == 4)
                     {
                         <a asp-action="Details" asp-route-Id="@assignment.AssignmentId">
                             <div class="tripCardDone">

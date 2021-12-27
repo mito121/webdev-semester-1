@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -14,10 +15,12 @@ namespace webdev_semester_1.Controllers
     public class AssignmentController : Controller
     {
         public readonly AlexAndersenDBContext _db;
+        private readonly UserManager<User> _userManager;
 
-        public AssignmentController(AlexAndersenDBContext db)
+        public AssignmentController(AlexAndersenDBContext db, UserManager<User> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
         [Authorize]
@@ -29,18 +32,20 @@ namespace webdev_semester_1.Controllers
         [Authorize]
         public async Task<IActionResult> MyTrips()
         {
-            string Baseurl = "https://localhost:44336/";
-            // Get from DB
+            // Get data from DB
             //IEnumerable<Assignment> objList = _db.Assignments;
             //return View(objList);
 
-            // Get from API
+            // Get data from API
+            string Baseurl = "https://localhost:44336/";
+            var thisUserId = Int32.Parse(_userManager.GetUserId(User));
+
             HttpClientHandler clientHandler = new HttpClientHandler();
             // Do this to avoid Untrusted root
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
             List<Assignment> UserAssigments = new List<Assignment>();
-            // Pass the handler to httpclient to avoid untrusted root
+            // Pass the handler to httpclient, again to avoid untrusted root
             using (var client = new HttpClient(clientHandler))
             {
                 // Pass service base url
@@ -48,8 +53,8 @@ namespace webdev_semester_1.Controllers
                 client.DefaultRequestHeaders.Clear();
                 // Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                // Send request to web api REST service method GetTodoItems using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("api/assignments");
+                // Send request to web api REST service method GetUserAssignments
+                HttpResponseMessage Res = await client.GetAsync($"api/assignments/user/{thisUserId}");
                 // Check result
                 if (Res.IsSuccessStatusCode)
                 {
