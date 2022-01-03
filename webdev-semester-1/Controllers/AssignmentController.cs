@@ -24,9 +24,37 @@ namespace webdev_semester_1.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> AvailableTripsAsync()
         {
-            return View();
+            // Get data from API
+            string Baseurl = "https://localhost:44336/";
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            // Do this to avoid Untrusted root
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            List<Assignment> AvailableAssignments = new List<Assignment>();
+            // Pass the handler to httpclient, again to avoid untrusted root
+            using (var client = new HttpClient(clientHandler))
+            {
+                // Pass service base url
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                // Define request data format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                // Send request to web api REST service method GetUserAssignments
+                HttpResponseMessage Res = await client.GetAsync($"api/assignments/available");
+                // Check result
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Store the response details recieved from web api
+                    var Response = Res.Content.ReadAsStringAsync().Result;
+                    //Deserialize response recieved from web api and store into TodoItems list
+                    AvailableAssignments = JsonConvert.DeserializeObject<List<Assignment>>(Response);
+                }
+                // Pass list to view
+                return View(AvailableAssignments);
+            }
         }
 
         [Authorize]

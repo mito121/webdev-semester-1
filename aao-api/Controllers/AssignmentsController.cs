@@ -27,6 +27,22 @@ namespace aao_api.Controllers
             return await _context.Assignments.ToListAsync();
         }
 
+        // GET: api/assignments/available
+        [Route("available")]
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetAvailableAssignments()
+        {
+            var availableAssignments = new List<Assignment>();
+
+            await foreach (var assigment in _context.Assignments)
+            {
+                if (assigment.Available == true)
+                {
+                    availableAssignments.Add(assigment);
+                }
+            }
+
+            return availableAssignments;
+        }
 
         // GET: api/Assignments/user/5
         [Route("user/{driverUserId}")]
