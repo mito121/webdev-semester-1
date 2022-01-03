@@ -1,8 +1,13 @@
-﻿@model Assignment
+﻿@using Microsoft.AspNetCore.Identity
+@model Assignment
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 @{
     ViewData["Title"] = "Details";
     Layout = "_SubSubpageLayout";
+    int thisUserId = Int32.Parse(UserManager.GetUserId(User));
 }
 
 <div class="tripCardActive">
@@ -67,12 +72,48 @@
     </div>
 </div>
 
+@if (Model.Available == true)
+{
+    <div class="requestTrip text-center infoBox">
+        <form method="post" asp-action="RequestTrip">
+            <input type="hidden" asp-for="AssignmentId" />
+            <input type="hidden" asp-for="StartDate" />
+            <input type="hidden" asp-for="EndDate" />
+            <input type="hidden" asp-for="StartTime" />
+            <input type="hidden" asp-for="Urgent" />
+            <input type="hidden" asp-for="AllDay" />
+            <input type="hidden" asp-for="Duration" />
+            <input type="hidden" asp-for="Description" />
+            <input type="hidden" asp-for="CountryCodeStart" />
+            <input type="hidden" asp-for="CountryCodeEnd" />
+            <input type="hidden" asp-for="Available" />
+            <input type="hidden" asp-for="StatusId" />
+            <input type="hidden" asp-for="StartCityId" />
+            <input type="hidden" asp-for="ContactUserId" />
+            <input type="hidden" asp-for="ReplacementUserId" />
+            <input type="hidden" asp-for="DriverUserId" />
 
-<div class="cancelTrip infoBox">
-    <button type="button" data-toggle="modal" data-target="#exampleModal">
-    Afmeld tur
-    </button>
-</div>
+            <input type="hidden" asp-for="DriverUser" />
+            <input type="hidden" asp-for="ContactUser" />
+            <input type="hidden" asp-for="ReplacementUser" />
+            <input type="hidden" asp-for="StartCity" />
+            <input type="hidden" asp-for="Status" />
+
+            <button type="submit" class="btn btn-lg btn-success">
+                Anmod om tur
+            </button>
+        </form>
+    </div>
+}
+else if (Model.DriverUserId == thisUserId)
+{
+    <div class="cancelTrip infoBox">
+        <button type="button" data-toggle="modal" data-target="#exampleModal">
+            Afmeld tur
+        </button>
+    </div>
+}
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
