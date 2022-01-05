@@ -99,7 +99,7 @@
             <input type="hidden" asp-for="StartCity" />
             <input type="hidden" asp-for="Status" />
 
-            <button type="submit" class="btn btn-lg btn-success">
+            <button type="submit" class="btn text-success" style="font-weight: 600; font-size: 1.5rem;">
                 Anmod om tur
             </button>
         </form>
@@ -108,7 +108,7 @@
 else if (Model.DriverUserId == thisUserId)
 {
     <div class="cancelTrip infoBox">
-        <button type="button" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="text-danger" data-toggle="modal" data-target="#exampleModal">
             Afmeld tur
         </button>
     </div>
@@ -125,7 +125,36 @@ else if (Model.DriverUserId == thisUserId)
                 <a href="tel:+4566188197">+45 66 18 81 97</a>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                <form method="post" asp-action="CancelTrip">
+                    <input type="hidden" asp-for="AssignmentId" />
+                    <input type="hidden" asp-for="StartDate" />
+                    <input type="hidden" asp-for="EndDate" />
+                    <input type="hidden" asp-for="StartTime" />
+                    <input type="hidden" asp-for="Urgent" />
+                    <input type="hidden" asp-for="AllDay" />
+                    <input type="hidden" asp-for="Duration" />
+                    <input type="hidden" asp-for="Description" />
+                    <input type="hidden" asp-for="CountryCodeStart" />
+                    <input type="hidden" asp-for="CountryCodeEnd" />
+                    <input type="hidden" asp-for="Available" />
+                    <input type="hidden" asp-for="StatusId" />
+                    <input type="hidden" asp-for="StartCityId" />
+                    <input type="hidden" asp-for="ContactUserId" />
+                    <input type="hidden" asp-for="ReplacementUserId" />
+                    <input type="hidden" asp-for="DriverUserId" />
+
+                    <input type="hidden" asp-for="DriverUser" />
+                    <input type="hidden" asp-for="ContactUser" />
+                    <input type="hidden" asp-for="ReplacementUser" />
+                    <input type="hidden" asp-for="StartCity" />
+                    <input type="hidden" asp-for="Status" />
+
+                    <button type="submit" class="btn btn-danger">
+                        Afmeld alligevel :-)
+                    </button>
+                </form>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button
             </div>
         </div>
     </div>

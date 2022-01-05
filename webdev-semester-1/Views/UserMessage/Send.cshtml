@@ -17,10 +17,7 @@
     <div class="col-md-4">
         <form asp-action="Send" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Message" class="control-label"></label>
-                <textarea asp-for="Message" class="form-control"></textarea>
-            </div>
+
             <div class="form-group">
                 <label asp-for="RecieverUserId" class="control-label"></label>
 
@@ -34,15 +31,18 @@
                     </select>
                 }
             </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea asp-for="Message" class="form-control"></textarea>
+            </div>
 
             <input type="hidden" asp-for="SenderUserId" value="@thisUserId" />
-
+            <br />
             <div class="form-group">
                 <input type="submit" value="Send" class="btn btn-primary" />
             </div>
         </form>
-
-
     </div>
 </div>
 

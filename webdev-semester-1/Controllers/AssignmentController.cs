@@ -138,5 +138,34 @@ namespace webdev_semester_1.Controllers
                 return RedirectToAction("Details", "Assignment", new { id });
             }
         }
+
+
+        // PUT: Cancel Assignment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelTrip(Assignment assignment)
+        {
+            string Baseurl = "https://localhost:44336/";
+
+            int id = assignment.AssignmentId;
+
+            assignment.Available = true;
+            assignment.DriverUserId = 0;
+
+            StringContent modifiedAssignment = new StringContent(JsonSerializer.Serialize(assignment), Encoding.UTF8, Application.Json);
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            using (var client = new HttpClient(clientHandler))
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.PutAsync($"api/assignments/{id}", modifiedAssignment);
+
+                return RedirectToAction("Details", "Assignment", new { id });
+            }
+        }
     }
 }
